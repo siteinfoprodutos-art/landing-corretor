@@ -1,0 +1,2596 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SCRIPT NO HEAD PARA APLICAR TEMA ANTES DA RENDERIZAÇÃO (EVITA FLASH) -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (systemDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- SEO & OpenGraph Meta Tags -->
+  <title>Adriana Monteiro | Corretora de Imóveis em São Paulo - CRECI-SP 123456-F</title>
+  <meta name="description" content="Compre, venda ou invista em imóveis em São Paulo e Grande São Paulo com a consultoria da corretora Adriana Monteiro (CRECI-SP 123456-F)." />
+  <meta property="og:title" content="Adriana Monteiro | Corretora de Imóveis" />
+  <meta property="og:description" content="Segurança, transparência e atendimento personalizado para encontrar o seu imóvel ideal em São Paulo." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0B2A5B" />
+
+  <!-- Google Fonts: Poppins (Títulos) & Inter (Texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       ARQUITETURA DE VARIÁVEIS CSS DE TEMA (CLARO / ESCURO)
+       ========================================================================== */
+    :root {
+      /* Superfícies & Layout */
+      --bg: #FFFFFF;
+      --bg-alt: #F4F7FB;
+      --surface: #FFFFFF;
+      --surface-2: #F8FAFC;
+      --border: #E2E8F0;
+      --border-muted: #F1F5F9;
+
+      /* Tipografia */
+      --text: #1B2433;
+      --text-muted: #5B6475;
+      --heading: #0B2A5B;
+
+      /* Paleta da Marca */
+      --primary: #1F4FA3;
+      --primary-hover: #18418A;
+      --accent: #F5B50A;
+      --accent-hover: #D99F05;
+      --accent-contrast: #0B2A5B;
+      --link: #1F4FA3;
+      --icon: #1F4FA3;
+
+      /* Formulários & Entradas */
+      --input-bg: #F4F7FB;
+      --input-border: #CBD5E1;
+      --input-text: #1B2433;
+      --input-focus: #1F4FA3;
+
+      /* Seções Fixas Navy (Ajustadas para Harmonia) */
+      --header-bg: rgba(11, 42, 91, 0.95);
+      --header-border: rgba(255, 255, 255, 0.12);
+      --footer-bg: #071B3B;
+      --footer-border: rgba(255, 255, 255, 0.1);
+      
+      --hero-bg-from: #071B3B;
+      --hero-bg-via: #0B2A5B;
+      --hero-bg-to: #133D7D;
+
+      --banner-bg-from: #071B3B;
+      --banner-bg-via: #0B2A5B;
+      --banner-bg-to: #133D7D;
+
+      /* Sombras & Vidro */
+      --shadow-sm: 0 4px 6px -1px rgba(11, 42, 91, 0.05);
+      --shadow-md: 0 10px 30px -5px rgba(11, 42, 91, 0.08);
+      --shadow-lg: 0 20px 40px -10px rgba(11, 42, 91, 0.15);
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(11, 42, 91, 0.1);
+      --img-filter: none;
+      --color-scheme: light;
+    }
+
+    html[data-theme="dark"] {
+      /* Superfícies & Layout (Dark Mode) */
+      --bg: #07142B;
+      --bg-alt: #0A1B38;
+      --surface: #0F2347;
+      --surface-2: #142B54;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-muted: rgba(255, 255, 255, 0.05);
+
+      /* Tipografia */
+      --text: #EAF0FA;
+      --text-muted: #A9B6CC;
+      --heading: #FFFFFF;
+
+      /* Paleta da Marca */
+      --primary: #6EA0FF;
+      --primary-hover: #4B85FF;
+      --accent: #F5B50A;
+      --accent-hover: #D99F05;
+      --accent-contrast: #07142B;
+      --link: #6EA0FF;
+      --icon: #6EA0FF;
+
+      /* Formulários & Entradas */
+      --input-bg: #0A1B38;
+      --input-border: rgba(255, 255, 255, 0.15);
+      --input-text: #EAF0FA;
+      --input-focus: #6EA0FF;
+
+      /* Seções Fixas Navy (Tom Azul-Marinho Profundo no Escuro) */
+      --header-bg: rgba(5, 14, 31, 0.95);
+      --header-border: rgba(255, 255, 255, 0.1);
+      --footer-bg: #030A17;
+      --footer-border: rgba(255, 255, 255, 0.1);
+
+      --hero-bg-from: #030A17;
+      --hero-bg-via: #071836;
+      --hero-bg-to: #0B2654;
+
+      --banner-bg-from: #030A17;
+      --banner-bg-via: #071836;
+      --banner-bg-to: #0B2654;
+
+      /* Sombras & Vidro */
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      --glass-bg: rgba(15, 35, 71, 0.9);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --img-filter: brightness(0.9);
+      --color-scheme: dark;
+    }
+
+    /* ACOMPANHAMENTO GLOBAL DE REGRAS DE TEMA */
+    html {
+      color-scheme: var(--color-scheme);
+    }
+
+    *, *::before, *::after {
+      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Imagens no tema escuro com brilho ajustado */
+    html[data-theme="dark"] img:not(.no-filter) {
+      filter: var(--img-filter);
+    }
+
+    /* Seleção de Texto */
+    ::selection {
+      background-color: var(--accent);
+      color: var(--accent-contrast);
+    }
+
+    /* Botões em Pílula */
+    .btn-pill {
+      border-radius: 9999px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Shimmer effect em botões dourados */
+    .btn-gold-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+      transform: rotate(30deg) translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    .btn-gold-shimmer:hover::after {
+      transform: rotate(30deg) translateX(100%);
+    }
+
+    /* Suavização de rolagem e foco acessível */
+    *:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Animação fade-up ao rolar */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 3D TILT NOS CARDS */
+    .tilt-card {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    }
+    .tilt-card-inner {
+      transition: transform 0.15s ease-out;
+    }
+    .card-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 75%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 15;
+    }
+
+    /* SHINE EM SELOS */
+    .badge-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .badge-shine::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: badgeShine 3s infinite;
+    }
+    @keyframes badgeShine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    /* SKELETON SHIMMER COM VARIÁVEIS */
+    .skeleton-shimmer {
+      background: linear-gradient(90deg, var(--border) 25%, var(--border-muted) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* CURSOR SPOTLIGHT NOS SEÇÕES ESCURAS */
+    .spotlight-container {
+      position: relative;
+    }
+    .spotlight-glow {
+      position: absolute;
+      pointer-events: none;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 181, 10, 0.12) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    /* ==========================================================================
+       HERO FACHADA & OVERLAYS MULTICAMADAS PREMIUM
+       ========================================================================== */
+    .hero-container {
+      position: relative;
+      background-color: #0B2A5B; /* Fallback caso a imagem não carregue */
+    }
+
+    .hero-facade-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("fundo-hero.png");
+      background-size: cover;
+      background-position: center 35%;
+      transform: scale(1.08);
+      animation: heroZoomIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform;
+      z-index: 1;
+    }
+
+    @keyframes heroZoomIn {
+      from { transform: scale(1.08); }
+      to { transform: scale(1); }
+    }
+
+    /* Camada 1: Gradiente Horizontal Navy (#0B2A5B) para legibilidade dos textos */
+    .hero-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(11, 42, 91, 0.94) 0%, rgba(11, 42, 91, 0.70) 50%, rgba(11, 42, 91, 0.40) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    html[data-theme="dark"] .hero-overlay-gradient {
+      background: linear-gradient(90deg, rgba(11, 42, 91, 0.98) 0%, rgba(11, 42, 91, 0.78) 50%, rgba(11, 42, 91, 0.48) 100%);
+    }
+
+    /* Camada 2: Multiply (#0B2A5B) para suavizar o céu mantendo luzes quentes */
+    .hero-overlay-multiply {
+      position: absolute;
+      inset: 0;
+      background-color: #0B2A5B;
+      mix-blend-mode: multiply;
+      opacity: 0.25;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Camada 3: Brilho Radial Dourado sutil atrás da foto da Adriana */
+    .hero-radial-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 78% 48%, rgba(245, 181, 10, 0.18) 0%, transparent 55%);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* Camada 4: Transição com degradê escuro na base do hero */
+    .hero-base-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to top, #0B2A5B 0%, rgba(11, 42, 91, 0) 100%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    /* Pontos de luz dourados nas luminárias da fachada com pulso lento */
+    .fixture-glow {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 181, 10, 0.95) 0%, rgba(245, 181, 10, 0.4) 50%, transparent 80%);
+      filter: blur(2px);
+      animation: slowPulseGlow 3.5s ease-in-out infinite;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    @keyframes slowPulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.95; transform: scale(1.35); }
+    }
+
+    /* MÁSCARA NA FOTO DA ADRIANA: Dissolve o contorno oval e adiciona drop-shadow + rim light */
+    .adriana-hero-mask {
+      -webkit-mask-image: radial-gradient(ellipse 76% 80% at 50% 46%, black 52%, transparent 90%);
+      mask-image: radial-gradient(ellipse 76% 80% at 50% 46%, black 52%, transparent 90%);
+      filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 12px rgba(245, 181, 10, 0.3));
+    }
+
+    /* RESPONSIVIDADE MOBILE DO HERO */
+    @media (max-width: 1023px) {
+      .hero-facade-bg {
+        background-position: 30% center;
+      }
+      .hero-overlay-gradient {
+        background: linear-gradient(180deg, rgba(11, 42, 91, 0.92) 0%, rgba(11, 42, 91, 0.86) 60%, rgba(11, 42, 91, 0.95) 100%);
+      }
+      html[data-theme="dark"] .hero-overlay-gradient {
+        background: linear-gradient(180deg, rgba(11, 42, 91, 0.96) 0%, rgba(11, 42, 91, 0.92) 60%, rgba(11, 42, 91, 0.98) 100%);
+      }
+    }
+
+    /* ACCESSIBILITY PREFERS REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; transition: none; }
+      .tilt-card { transform: none !important; }
+      .badge-shine::before { animation: none; }
+      .skeleton-shimmer { animation: none; }
+      .spotlight-glow { display: none; }
+      .hero-facade-bg { animation: none !important; transform: none !important; }
+      .fixture-glow { animation: none; opacity: 0.7; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ==================== BARRA DE PROGRESSO DE ROLAGEM ==================== -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 z-[100] transition-all duration-75" style="width: 0%; background-color: var(--accent);"></div>
+
+  <!-- ==================== 1. HEADER FIXO COM TEMA E FAVORITOS ==================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background-color: var(--header-bg); border-bottom: 1px solid var(--header-border); backdrop-filter: blur(12px);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4 transition-all duration-300" id="header-container">
+      
+      <!-- LOGO / NOME -->
+      <a href="#inicio" class="flex items-center gap-3 group focus:outline-none" aria-label="Adriana Monteiro Corretora de Imóveis">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md group-hover:scale-105 transition-transform" style="background-color: var(--accent); color: var(--accent-contrast);">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+        </div>
+        <div>
+          <span class="block text-white font-heading font-bold text-base sm:text-lg leading-tight tracking-tight">Adriana Monteiro <span class="hidden sm:inline font-normal text-white/70">| Corretora</span></span>
+          <span class="block text-xs font-semibold tracking-wide" style="color: var(--accent);">CRECI-SP 123456-F</span>
+        </div>
+      </a>
+
+      <!-- MENU DESKTOP -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-white/85 relative">
+        <a href="#inicio" class="nav-item hover:text-amber-400 transition-colors py-1 relative">Início</a>
+        <a href="#imoveis" class="nav-item hover:text-amber-400 transition-colors py-1 relative">Imóveis</a>
+        <a href="#servicos" class="nav-item hover:text-amber-400 transition-colors py-1 relative">Serviços</a>
+        <a href="#sobre" class="nav-item hover:text-amber-400 transition-colors py-1 relative">Sobre</a>
+        <a href="#depoimentos" class="nav-item hover:text-amber-400 transition-colors py-1 relative">Depoimentos</a>
+        <a href="#contato" class="nav-item hover:text-amber-400 transition-colors py-1 relative">Contato</a>
+      </nav>
+
+      <!-- CONTROLES DO HEADER (TEMA, FAVORITOS, FALE COMIGO) -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Contador de Favoritos -->
+        <button type="button" onclick="openFavoritesModal()" class="relative p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus:outline-none" aria-label="Ver imóveis favoritados">
+          <svg class="w-5 h-5 fill-amber-400" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span id="fav-badge" class="absolute -top-1 -right-1 font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center shadow-md transition-transform scale-100" style="background-color: var(--accent); color: var(--accent-contrast);">0</span>
+        </button>
+
+        <!-- Botão Alternar Tema Claro / Escuro -->
+        <button id="theme-toggle-btn" type="button" aria-label="Alternar tema claro/escuro" aria-pressed="false" 
+                class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 focus:outline-none" style="color: var(--accent);">
+          <svg id="theme-icon" class="w-5 h-5 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        </button>
+
+        <!-- Botão Header Desktop -->
+        <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Vi%20sua%20página%20e%20gostaria%20de%20atendimento." 
+           target="_blank" rel="noopener noreferrer" 
+           class="hidden lg:flex btn-pill btn-gold-shimmer magnetic-btn px-6 py-2.5 font-heading font-semibold text-sm shadow-md items-center gap-2" style="background-color: var(--accent); color: var(--accent-contrast);">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/>
+          </svg>
+          <span>Fale comigo</span>
+        </a>
+
+        <!-- Botão Hambúrguer Mobile -->
+        <button id="mobile-menu-btn" type="button" aria-label="Abrir menu principal" 
+                class="lg:hidden p-2 rounded-xl text-white hover:bg-white/10 focus:outline-none">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- DRAWER MENU MOBILE -->
+    <div id="mobile-menu" class="hidden lg:hidden px-4 pt-4 pb-6 space-y-3" style="background-color: var(--footer-bg); border-bottom: 1px solid var(--header-border);">
+      <a href="#inicio" class="mobile-nav-link block px-3 py-2 text-base font-medium text-white hover:text-amber-400 rounded-lg">Início</a>
+      <a href="#imoveis" class="mobile-nav-link block px-3 py-2 text-base font-medium text-white/90 hover:text-amber-400 rounded-lg">Imóveis</a>
+      <a href="#servicos" class="mobile-nav-link block px-3 py-2 text-base font-medium text-white/90 hover:text-amber-400 rounded-lg">Serviços</a>
+      <a href="#sobre" class="mobile-nav-link block px-3 py-2 text-base font-medium text-white/90 hover:text-amber-400 rounded-lg">Sobre</a>
+      <a href="#depoimentos" class="mobile-nav-link block px-3 py-2 text-base font-medium text-white/90 hover:text-amber-400 rounded-lg">Depoimentos</a>
+      <a href="#contato" class="mobile-nav-link block px-3 py-2 text-base font-medium text-white/90 hover:text-amber-400 rounded-lg">Contato</a>
+      <div class="pt-2">
+        <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Vi%20sua%20página%20e%20gostaria%20de%20atendimento." 
+           target="_blank" rel="noopener noreferrer" 
+           class="btn-pill w-full py-3 font-heading font-semibold text-center block shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">
+          Fale com a Adriana no WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+
+    <!-- ==================== 2. HERO SECTION COM FACHADA E ADRIANA MONTEIRO ==================== -->
+    <section id="inicio" class="hero-container relative text-white pt-8 pb-16 lg:pb-0 overflow-hidden spotlight-container">
+      
+      <!-- FACHADA BACKGROUND COM ZOOM & PARALLAX -->
+      <div id="hero-facade-bg" class="hero-facade-bg"></div>
+
+      <!-- CAMADA 1: OVERLAY GRADIENTE HORIZONTAL (#0B2A5B) PARA LEITURA -->
+      <div class="hero-overlay-gradient"></div>
+
+      <!-- CAMADA 2: OVERLAY MULTIPLY PARA SUAVIZAR O CÉU MANTENDO LUZES DA CASA -->
+      <div class="hero-overlay-multiply"></div>
+
+      <!-- CAMADA 3: BRILHO RADIAL DOURADO ATRÁS DA ADRIANA -->
+      <div class="hero-radial-glow"></div>
+
+      <!-- CAMADA 4: DEGRADÊ ESCURO NA BASE DO HERO -->
+      <div class="hero-base-fade"></div>
+
+      <!-- PONTOS DE LUZ DOURADOS ANIMADOS NAS LUMINÁRIAS DA FACHADA -->
+      <div class="fixture-glow hidden sm:block" style="top: 48%; left: 45%;"></div>
+      <div class="fixture-glow hidden sm:block" style="top: 50%; left: 59%;"></div>
+      <div class="fixture-glow hidden sm:block" style="top: 22%; left: 65%;"></div>
+      <div class="fixture-glow hidden sm:block" style="top: 76%; left: 32%;"></div>
+
+      <!-- Brilho Spotlight Radial Seguidor de Cursor (Mantido) -->
+      <div class="spotlight-glow" id="hero-spotlight"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          
+          <!-- Lado Esquerdo: Conteúdo & CTA -->
+          <div class="lg:col-span-7 pt-6 lg:py-16 text-left">
+            
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 font-semibold text-xs tracking-wider uppercase mb-6 fade-up" style="color: var(--accent); backdrop-filter: blur(8px);">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Adriana Monteiro · CRECI-SP 123456-F</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-heading font-bold text-3xl sm:text-5xl lg:text-5xl xl:text-6xl text-white leading-tight tracking-tight mb-6 fade-up drop-shadow-md">
+              Abrindo portas para a sua <span style="color: var(--accent);">nova conquista</span>
+            </h1>
+            
+            <!-- Subtítulo -->
+            <p class="text-base sm:text-lg text-white/90 font-normal leading-relaxed mb-8 max-w-2xl fade-up drop-shadow-sm">
+              Compre, venda ou invista em imóveis com segurança, transparência e atendimento personalizado do início ao fim em <strong class="text-white">São Paulo e Grande São Paulo</strong>.
+            </p>
+
+            <!-- Botões de Ação Principais -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6 fade-up">
+              <a href="#imoveis" 
+                 class="btn-pill btn-gold-shimmer magnetic-btn px-8 py-4 font-heading font-bold text-base shadow-xl flex items-center justify-center gap-2" style="background-color: var(--accent); color: var(--accent-contrast);">
+                <span>Ver imóveis</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+              <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Vi%20sua%20página%20e%20gostaria%20de%20atendimento." 
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn-pill px-8 py-4 border-2 border-white/80 hover:bg-white hover:text-slate-900 text-white font-heading font-semibold text-base flex items-center justify-center gap-2 transition-all shadow-lg backdrop-blur-sm">
+                <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/></svg>
+                <span>Falar no WhatsApp</span>
+              </a>
+            </div>
+
+            <!-- Indicador de Atendimento Direto abaixo dos botões à esquerda -->
+            <div class="inline-flex items-center gap-2 text-xs text-white/95 font-medium px-4 py-2 rounded-full bg-black/20 backdrop-blur-md border border-white/10 fade-up mb-4 lg:mb-0">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Fale com a Adriana no WhatsApp — Resposta rápida</span>
+            </div>
+
+          </div>
+
+          <!-- Lado Direito: Foto da Corretora Adriana sobreposta à fachada com Máscara Radial e Rim Light -->
+          <div class="lg:col-span-5 flex justify-center lg:justify-end fade-up relative z-10 mt-6 lg:mt-0">
+            <div class="relative w-full max-w-md lg:max-w-none flex justify-center">
+              
+              <img id="hero-adriana-img"
+                   src="adriana.png" 
+                   alt="Adriana Monteiro, corretora de imóveis" 
+                   onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-48 h-48 lg:w-64 lg:h-64 rounded-full font-bold text-6xl flex items-center justify-center font-heading shadow-md my-8\' style=\'background-color: var(--accent); color: var(--accent-contrast);\'>A</div>';"
+                   class="adriana-hero-mask max-h-[460px] sm:max-h-[520px] lg:max-h-[570px] w-auto object-contain object-bottom transition-transform duration-300" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BARRA DE BUSCA FLUTUANTE ABAIXO DO HERO -->
+        <div class="rounded-3xl p-4 sm:p-6 max-w-5xl mx-auto text-left -mb-16 relative z-20 fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg); color: var(--text);">
+          <!-- Abas de Categoria -->
+          <div class="flex items-center gap-2 pb-3 mb-4 overflow-x-auto no-scrollbar" style="border-bottom: 1px solid var(--border);">
+            <button type="button" class="search-tab active px-5 py-2 rounded-xl text-sm font-semibold font-heading text-white transition-all" style="background-color: var(--primary);" data-goal="comprar">Comprar</button>
+            <button type="button" class="search-tab px-5 py-2 rounded-xl text-sm font-semibold font-heading transition-all" style="background-color: var(--input-bg); color: var(--text-muted);" data-goal="alugar">Alugar</button>
+            <button type="button" class="search-tab px-5 py-2 rounded-xl text-sm font-semibold font-heading transition-all" style="background-color: var(--input-bg); color: var(--text-muted);" data-goal="vender">Vender</button>
+            <button type="button" class="search-tab px-5 py-2 rounded-xl text-sm font-semibold font-heading transition-all" style="background-color: var(--input-bg); color: var(--text-muted);" data-goal="investir">Investir</button>
+          </div>
+
+          <!-- Campos da Busca -->
+          <form id="hero-search-form" onsubmit="handleHeroSearch(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label for="search-type" class="block text-xs font-semibold uppercase tracking-wider mb-1" style="color: var(--text-muted);">Tipo de Imóvel</label>
+              <select id="search-type" class="w-full px-4 py-3 rounded-xl font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);">
+                <option value="todos">Todos os tipos</option>
+                <option value="apartamento">Apartamento / Studio</option>
+                <option value="casa">Casa / Condomínio</option>
+                <option value="terreno">Terreno</option>
+                <option value="comercial">Comercial / Sala</option>
+              </select>
+            </div>
+            <div>
+              <label for="search-location" class="block text-xs font-semibold uppercase tracking-wider mb-1" style="color: var(--text-muted);">Bairro ou Região</label>
+              <input type="text" id="search-location" placeholder="Ex: Moema, Pinheiros, Alphaville..." 
+                     class="w-full px-4 py-3 rounded-xl font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);" />
+            </div>
+            <div class="flex items-end">
+              <button type="submit" class="btn-pill btn-gold-shimmer w-full py-3.5 text-white font-heading font-semibold text-sm shadow-md flex items-center justify-center gap-2" style="background-color: var(--primary);">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <span>Encontrar meu imóvel</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 3. FAIXA DE CONFIANÇA COM NÚMEROS ANIMADOS ==================== -->
+    <section class="pt-24 pb-12" style="background-color: var(--bg-alt); border-bottom: 1px solid var(--border);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          
+          <div class="p-6 rounded-2xl fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <span class="block font-heading font-extrabold text-3xl lg:text-4xl mb-1" style="color: var(--primary);"><span class="count-up" data-target="12">0</span> Anos</span>
+            <span class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">De Experiência no Mercado</span>
+          </div>
+
+          <div class="p-6 rounded-2xl fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <span class="block font-heading font-extrabold text-3xl lg:text-4xl mb-1" style="color: var(--primary);"><span class="count-up" data-target="480">0</span>+</span>
+            <span class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">Imóveis Negociados</span>
+          </div>
+
+          <div class="p-6 rounded-2xl fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <span class="block font-heading font-extrabold text-3xl lg:text-4xl mb-1" style="color: var(--primary);"><span class="count-up" data-target="350">0</span>+</span>
+            <span class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">Famílias Atendidas</span>
+          </div>
+
+          <div class="p-6 rounded-2xl fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div class="flex items-center justify-center gap-1 mb-1">
+              <span class="font-heading font-extrabold text-3xl lg:text-4xl mr-1" style="color: var(--primary);">4,9</span>
+              <svg class="w-5 h-5" style="fill: var(--accent);" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <span class="text-xs sm:text-sm font-medium" style="color: var(--text-muted);">Avaliação Média dos Clientes</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. SOBRE MIM ==================== -->
+    <section id="sobre" class="py-20" style="background-color: var(--bg);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Foto da Adriana -->
+          <div class="lg:col-span-5 fade-up">
+            <div class="relative max-w-md mx-auto">
+              <div class="aspect-4/5 rounded-3xl overflow-hidden shadow-md relative flex items-center justify-center text-white" style="background: linear-gradient(135deg, var(--hero-bg-from), var(--hero-bg-via), var(--hero-bg-to)); border: 4px solid var(--surface);">
+                <img src="adriana.png" 
+                     alt="Adriana Monteiro, corretora de imóveis" 
+                     onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-32 h-32 rounded-full font-bold text-5xl flex items-center justify-center font-heading shadow-md\' style=\'background-color: var(--accent); color: var(--accent-contrast);\'>A</div>';"
+                     class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                <div class="absolute bottom-6 left-6 right-6 text-left">
+                  <h3 class="font-heading font-bold text-xl text-white">Adriana Monteiro</h3>
+                  <p class="font-semibold text-sm" style="color: var(--accent);">CRECI-SP 123456-F</p>
+                </div>
+              </div>
+
+              <!-- Badge Flutuante de Região -->
+              <div class="absolute -bottom-5 -right-3 p-4 rounded-2xl shadow-lg flex items-center gap-3" style="background-color: var(--surface); border: 1px solid var(--border);">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background-color: rgba(31, 79, 163, 0.1); color: var(--icon);">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <span class="block text-xs font-medium" style="color: var(--text-muted);">Região de Atuação</span>
+                  <span class="block text-sm font-bold" style="color: var(--heading);">São Paulo e Grande SP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conteúdo Sobre Adriana -->
+          <div class="lg:col-span-7 space-y-6 fade-up">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">
+              <span>Sobre a Corretora</span>
+            </div>
+
+            <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+              Sua jornada imobiliária com <span style="color: var(--accent);">atendimento dedicado</span> e segurança
+            </h2>
+
+            <p class="text-base leading-relaxed" style="color: var(--text-muted);">
+              Sou a <strong style="color: var(--text);">Adriana Monteiro</strong>, corretora de imóveis com mais de 12 anos de atuação em São Paulo e Grande São Paulo. Meu trabalho é pautado em um atendimento próximo e personalizado: antes de apresentar qualquer imóvel, faço questão de ouvir com atenção e entender em profundidade o perfil, as necessidades e o momento de vida de cada cliente.
+            </p>
+
+            <p class="text-base leading-relaxed" style="color: var(--text-muted);">
+              Conduzo todo o processo com absoluta transparência e rigor técnico, desde a curadoria inicial e avaliação justa até a análise minuciosa da documentação e aprovação do financiamento. Meu objetivo é garantir uma negociação leve, ética e segura até o inesquecível momento de entregar as chaves em suas mãos.
+            </p>
+
+            <!-- 3 Diferenciais em Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+              <div class="p-4 rounded-2xl" style="background-color: var(--surface); border: 1px solid var(--border);">
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-3" style="background-color: var(--primary); color: #FFFFFF;">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                </div>
+                <h4 class="font-heading font-semibold text-sm mb-1" style="color: var(--heading);">Atendimento Personalizado</h4>
+                <p class="text-xs leading-normal" style="color: var(--text-muted);">Escuta atenta para alinhar imóveis exatamente ao seu perfil real.</p>
+              </div>
+
+              <div class="p-4 rounded-2xl" style="background-color: var(--surface); border: 1px solid var(--border);">
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-3" style="background-color: var(--primary); color: #FFFFFF;">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h4 class="font-heading font-semibold text-sm mb-1" style="color: var(--heading);">Transparência em Cada Etapa</h4>
+                <p class="text-xs leading-normal" style="color: var(--text-muted);">Checagem minuciosa de certidões e documentação sem surpresas.</p>
+              </div>
+
+              <div class="p-4 rounded-2xl" style="background-color: var(--surface); border: 1px solid var(--border);">
+                <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-3" style="background-color: var(--primary); color: #FFFFFF;">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h4 class="font-heading font-semibold text-sm mb-1" style="color: var(--heading);">Negociação Segura</h4>
+                <p class="text-xs leading-normal" style="color: var(--text-muted);">Foco no valor justo de mercado e nas melhores condições financeiras.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. SERVIÇOS ==================== -->
+    <section id="servicos" class="py-20" style="background-color: var(--bg-alt);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+          <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Serviços Prestados</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+            Como posso ajudar na sua <span style="color: var(--accent);">jornada imobiliária</span>
+          </h2>
+          <p class="text-base mt-3" style="color: var(--text-muted);">Consultoria especializada para todas as necessidades de compra, venda e investimentos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <div class="p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div>
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors" style="background-color: rgba(31, 79, 163, 0.1); color: var(--icon);">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              </div>
+              <h3 class="font-heading font-bold text-xl mb-3" style="color: var(--heading);">Compra de Imóveis</h3>
+              <p class="text-sm leading-relaxed mb-6" style="color: var(--text-muted);">
+                Encontre a propriedade ideal para morar ou investir com curadoria exclusiva e acompanhamento em cada detalhe.
+              </p>
+            </div>
+            <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Tenho%20interesse%20em%20comprar%20um%20imóvel." 
+               target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--link);">
+              <span>Saiba mais</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+
+          <div class="p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div>
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors" style="background-color: rgba(31, 79, 163, 0.1); color: var(--icon);">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 class="font-heading font-bold text-xl mb-3" style="color: var(--heading);">Venda & Avaliação</h3>
+              <p class="text-sm leading-relaxed mb-6" style="color: var(--text-muted);">
+                Avaliação mercadológica precisa e estratégia de divulgação profissional para vender seu bem pelo valor justo.
+              </p>
+            </div>
+            <a href="#avaliacao" 
+               class="inline-flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--link);">
+              <span>Solicitar avaliação</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+
+          <div class="p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div>
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors" style="background-color: rgba(31, 79, 163, 0.1); color: var(--icon);">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+              </div>
+              <h3 class="font-heading font-bold text-xl mb-3" style="color: var(--heading);">Locação Residencial & Comercial</h3>
+              <p class="text-sm leading-relaxed mb-6" style="color: var(--text-muted);">
+                Intermediação ágil de contratos de aluguel com análise de cadastro dos envolvidos e garantias sólidas.
+              </p>
+            </div>
+            <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20informações%20sobre%20locação." 
+               target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--link);">
+              <span>Saiba mais</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+
+          <div class="p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div>
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors" style="background-color: rgba(31, 79, 163, 0.1); color: var(--icon);">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </div>
+              <h3 class="font-heading font-bold text-xl mb-3" style="color: var(--heading);">Investimentos Imobiliários</h3>
+              <p class="text-sm leading-relaxed mb-6" style="color: var(--text-muted);">
+                Oportunidades selecionadas na planta, terrenos com potencial construtivo e carteira para geração de renda.
+              </p>
+            </div>
+            <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Quero%20investir%20em%20imóveis." 
+               target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--link);">
+              <span>Falar sobre investimento</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. IMÓVEIS EM DESTAQUE ==================== -->
+    <section id="imoveis" class="py-20 relative" style="background-color: var(--bg);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 fade-up">
+          <div>
+            <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Portfólio Selecionado</span>
+            <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+              Imóveis em <span style="color: var(--accent);">Destaque</span>
+            </h2>
+          </div>
+
+          <!-- Filtros de Imóveis por Tipo -->
+          <div class="flex items-center gap-2 mt-6 md:mt-0 overflow-x-auto pb-2 no-scrollbar">
+            <button type="button" class="prop-filter active px-4 py-2 rounded-xl text-xs font-semibold font-heading text-white transition-all" style="background-color: var(--heading);" onclick="filterProps('todos', this)">Todos</button>
+            <button type="button" class="prop-filter px-4 py-2 rounded-xl text-xs font-semibold font-heading transition-all" style="background-color: var(--bg-alt); color: var(--text-muted);" onclick="filterProps('apartamento', this)">Apartamento</button>
+            <button type="button" class="prop-filter px-4 py-2 rounded-xl text-xs font-semibold font-heading transition-all" style="background-color: var(--bg-alt); color: var(--text-muted);" onclick="filterProps('casa', this)">Casa</button>
+            <button type="button" class="prop-filter px-4 py-2 rounded-xl text-xs font-semibold font-heading transition-all" style="background-color: var(--bg-alt); color: var(--text-muted);" onclick="filterProps('terreno', this)">Terreno</button>
+            <button type="button" class="prop-filter px-4 py-2 rounded-xl text-xs font-semibold font-heading transition-all" style="background-color: var(--bg-alt); color: var(--text-muted);" onclick="filterProps('comercial', this)">Comercial</button>
+          </div>
+        </div>
+
+        <!-- SKELETON LOADING -->
+        <div id="skeleton-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+          <div class="rounded-3xl overflow-hidden p-4 space-y-4" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <div class="h-48 rounded-2xl skeleton-shimmer"></div>
+            <div class="h-6 w-3/4 rounded skeleton-shimmer"></div>
+            <div class="h-8 w-1/2 rounded skeleton-shimmer"></div>
+            <div class="h-10 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="rounded-3xl overflow-hidden p-4 space-y-4" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <div class="h-48 rounded-2xl skeleton-shimmer"></div>
+            <div class="h-6 w-3/4 rounded skeleton-shimmer"></div>
+            <div class="h-8 w-1/2 rounded skeleton-shimmer"></div>
+            <div class="h-10 rounded-full skeleton-shimmer"></div>
+          </div>
+          <div class="rounded-3xl overflow-hidden p-4 space-y-4" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <div class="h-48 rounded-2xl skeleton-shimmer"></div>
+            <div class="h-6 w-3/4 rounded skeleton-shimmer"></div>
+            <div class="h-8 w-1/2 rounded skeleton-shimmer"></div>
+            <div class="h-10 rounded-full skeleton-shimmer"></div>
+          </div>
+        </div>
+
+        <!-- GRADE COM OS 6 IMÓVEIS -->
+        <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Imóvel 1 -->
+          <div class="prop-card tilt-card rounded-3xl overflow-hidden transition-all duration-300 fade-up group relative" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);" data-category="apartamento" data-id="1">
+            <div class="card-glare"></div>
+            <div class="tilt-card-inner">
+              <div class="relative aspect-16/10 overflow-hidden bg-slate-900 group/img">
+                <div class="gallery-track flex w-full h-full transition-transform duration-500">
+                  <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Apartamento em Moema - Sala" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(1)" />
+                  <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80" alt="Apartamento em Moema - Interior" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(1)" />
+                  <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80" alt="Apartamento em Moema - Quarto" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(1)" />
+                </div>
+                <button type="button" onclick="prevSlide(event, this)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">‹</button>
+                <button type="button" onclick="nextSlide(event, this)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">›</button>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                </div>
+                <div class="absolute top-4 left-4 flex gap-2 z-20">
+                  <span class="badge-shine px-3 py-1 rounded-full text-white text-xs font-semibold font-heading shadow-md" style="background-color: var(--heading);">Apartamento</span>
+                  <span class="badge-shine px-3 py-1 rounded-full text-xs font-bold font-heading shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">Destaque</span>
+                </div>
+                <button type="button" onclick="toggleFavorite(event, this, 1)" aria-label="Favoritar este imóvel" class="fav-btn absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:scale-110 transition-all z-20">
+                  <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <div class="absolute inset-x-0 bottom-0 p-3 transform translate-y-full group-hover/img:translate-y-0 transition-transform duration-300 flex justify-around text-xs font-semibold backdrop-blur-md z-10" style="background-color: var(--glass-bg); border-top: 1px solid var(--glass-border); color: var(--text);">
+                  <span>🛏️ 3 Dorm.</span>
+                  <span>🚿 2 Banho(s)</span>
+                  <span>🚗 2 Vagas</span>
+                  <span>📐 110 m²</span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-xs font-medium mb-1" style="color: var(--text-muted);">Moema · São Paulo</div>
+                <h3 class="font-heading font-bold text-lg mb-2 cursor-pointer transition-colors" style="color: var(--heading);" onclick="openPropertyModal(1)">Apartamento com Varanda Gourmet</h3>
+                <p class="text-2xl font-heading font-extrabold mb-4" style="color: var(--accent);">R$ 1.250.000</p>
+                <div class="grid grid-cols-4 gap-2 pt-4 text-center text-xs font-medium" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+                  <div><strong class="block font-bold" style="color: var(--text);">3</strong> Dorm.</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">2</strong> Banho(s)</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">2</strong> Vaga(s)</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">110 m²</strong> Área</div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                  <button type="button" onclick="openPropertyModal(1)" class="btn-pill py-2.5 font-heading font-semibold text-xs text-center transition-colors" style="background-color: var(--bg-alt); color: var(--text);">Ver detalhes</button>
+                  <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20saber%20mais%20sobre%20o%20imóvel:%20Apartamento%20em%20Moema%20(R$%201.250.000)." target="_blank" rel="noopener noreferrer" class="btn-pill btn-gold-shimmer py-2.5 font-heading font-bold text-xs text-center shadow-md flex items-center justify-center gap-1" style="background-color: var(--accent); color: var(--accent-contrast);"><span>Quero saber</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imóvel 2 -->
+          <div class="prop-card tilt-card rounded-3xl overflow-hidden transition-all duration-300 fade-up group relative" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);" data-category="casa" data-id="2">
+            <div class="card-glare"></div>
+            <div class="tilt-card-inner">
+              <div class="relative aspect-16/10 overflow-hidden bg-slate-900 group/img">
+                <div class="gallery-track flex w-full h-full transition-transform duration-500">
+                  <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Casa em Alphaville" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(2)" />
+                  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Casa em Alphaville - Sala" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(2)" />
+                  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Casa em Alphaville - Lazer" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(2)" />
+                </div>
+                <button type="button" onclick="prevSlide(event, this)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">‹</button>
+                <button type="button" onclick="nextSlide(event, this)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">›</button>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                </div>
+                <div class="absolute top-4 left-4 flex gap-2 z-20">
+                  <span class="badge-shine px-3 py-1 rounded-full text-white text-xs font-semibold font-heading shadow-md" style="background-color: var(--heading);">Casa em Condomínio</span>
+                  <span class="badge-shine px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold font-heading shadow-md">Novo</span>
+                </div>
+                <button type="button" onclick="toggleFavorite(event, this, 2)" aria-label="Favoritar este imóvel" class="fav-btn absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:scale-110 transition-all z-20">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <div class="absolute inset-x-0 bottom-0 p-3 transform translate-y-full group-hover/img:translate-y-0 transition-transform duration-300 flex justify-around text-xs font-semibold backdrop-blur-md z-10" style="background-color: var(--glass-bg); border-top: 1px solid var(--glass-border); color: var(--text);">
+                  <span>🛏️ 4 Dorm.</span>
+                  <span>🚿 5 Banho(s)</span>
+                  <span>🚗 4 Vagas</span>
+                  <span>📐 320 m²</span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-xs font-medium mb-1" style="color: var(--text-muted);">Alphaville · Grande SP</div>
+                <h3 class="font-heading font-bold text-lg mb-2 cursor-pointer transition-colors" style="color: var(--heading);" onclick="openPropertyModal(2)">Casa em Condomínio Fechado</h3>
+                <p class="text-2xl font-heading font-extrabold mb-4" style="color: var(--accent);">R$ 2.890.000</p>
+                <div class="grid grid-cols-4 gap-2 pt-4 text-center text-xs font-medium" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+                  <div><strong class="block font-bold" style="color: var(--text);">4</strong> Dorm.</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">5</strong> Banho(s)</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">4</strong> Vaga(s)</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">320 m²</strong> Área</div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                  <button type="button" onclick="openPropertyModal(2)" class="btn-pill py-2.5 font-heading font-semibold text-xs text-center transition-colors" style="background-color: var(--bg-alt); color: var(--text);">Ver detalhes</button>
+                  <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20saber%20mais%20sobre%20o%20imóvel:%20Casa%20em%20Condomínio%20Alphaville%20(R$%202.890.000)." target="_blank" rel="noopener noreferrer" class="btn-pill btn-gold-shimmer py-2.5 font-heading font-bold text-xs text-center shadow-md flex items-center justify-center gap-1" style="background-color: var(--accent); color: var(--accent-contrast);"><span>Quero saber</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imóvel 3 -->
+          <div class="prop-card tilt-card rounded-3xl overflow-hidden transition-all duration-300 fade-up group relative" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);" data-category="apartamento" data-id="3">
+            <div class="card-glare"></div>
+            <div class="tilt-card-inner">
+              <div class="relative aspect-16/10 overflow-hidden bg-slate-900 group/img">
+                <div class="gallery-track flex w-full h-full transition-transform duration-500">
+                  <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80" alt="Studio Vila Madalena" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(3)" />
+                  <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=800&q=80" alt="Studio Vila Madalena - Cozinha" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(3)" />
+                  <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80" alt="Studio Vila Madalena - Sacada" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(3)" />
+                </div>
+                <button type="button" onclick="prevSlide(event, this)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">‹</button>
+                <button type="button" onclick="nextSlide(event, this)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">›</button>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                </div>
+                <div class="absolute top-4 left-4 flex gap-2 z-20">
+                  <span class="badge-shine px-3 py-1 rounded-full text-white text-xs font-semibold font-heading shadow-md" style="background-color: var(--heading);">Studio</span>
+                  <span class="badge-shine px-3 py-1 rounded-full text-white text-xs font-bold font-heading shadow-md" style="background-color: var(--primary);">Design</span>
+                </div>
+                <button type="button" onclick="toggleFavorite(event, this, 3)" aria-label="Favoritar este imóvel" class="fav-btn absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:scale-110 transition-all z-20">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <div class="absolute inset-x-0 bottom-0 p-3 transform translate-y-full group-hover/img:translate-y-0 transition-transform duration-300 flex justify-around text-xs font-semibold backdrop-blur-md z-10" style="background-color: var(--glass-bg); border-top: 1px solid var(--glass-border); color: var(--text);">
+                  <span>🛏️ 1 Dorm.</span>
+                  <span>🚿 1 Banho(s)</span>
+                  <span>🚗 1 Vaga</span>
+                  <span>📐 38 m²</span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-xs font-medium mb-1" style="color: var(--text-muted);">Vila Madalena · São Paulo</div>
+                <h3 class="font-heading font-bold text-lg mb-2 cursor-pointer transition-colors" style="color: var(--heading);" onclick="openPropertyModal(3)">Studio Moderno e Integrado</h3>
+                <p class="text-2xl font-heading font-extrabold mb-4" style="color: var(--accent);">R$ 520.000</p>
+                <div class="grid grid-cols-4 gap-2 pt-4 text-center text-xs font-medium" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+                  <div><strong class="block font-bold" style="color: var(--text);">1</strong> Dorm.</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">1</strong> Banho(s)</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">1</strong> Vaga</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">38 m²</strong> Área</div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                  <button type="button" onclick="openPropertyModal(3)" class="btn-pill py-2.5 font-heading font-semibold text-xs text-center transition-colors" style="background-color: var(--bg-alt); color: var(--text);">Ver detalhes</button>
+                  <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20saber%20mais%20sobre%20o%20imóvel:%20Studio%20Vila%20Madalena%20(R$%20520.000)." target="_blank" rel="noopener noreferrer" class="btn-pill btn-gold-shimmer py-2.5 font-heading font-bold text-xs text-center shadow-md flex items-center justify-center gap-1" style="background-color: var(--accent); color: var(--accent-contrast);"><span>Quero saber</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imóvel 4 -->
+          <div class="prop-card tilt-card rounded-3xl overflow-hidden transition-all duration-300 fade-up group relative" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);" data-category="apartamento" data-id="4">
+            <div class="card-glare"></div>
+            <div class="tilt-card-inner">
+              <div class="relative aspect-16/10 overflow-hidden bg-slate-900 group/img">
+                <div class="gallery-track flex w-full h-full transition-transform duration-500">
+                  <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Cobertura Pinheiros" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(4)" />
+                  <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80" alt="Cobertura Pinheiros - Sala" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(4)" />
+                  <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" alt="Cobertura Pinheiros - Suíte" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(4)" />
+                </div>
+                <button type="button" onclick="prevSlide(event, this)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">‹</button>
+                <button type="button" onclick="nextSlide(event, this)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">›</button>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                </div>
+                <div class="absolute top-4 left-4 flex gap-2 z-20">
+                  <span class="badge-shine px-3 py-1 rounded-full text-white text-xs font-semibold font-heading shadow-md" style="background-color: var(--heading);">Cobertura</span>
+                  <span class="badge-shine px-3 py-1 rounded-full text-xs font-bold font-heading shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">Exclusivo</span>
+                </div>
+                <button type="button" onclick="toggleFavorite(event, this, 4)" aria-label="Favoritar este imóvel" class="fav-btn absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:scale-110 transition-all z-20">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <div class="absolute inset-x-0 bottom-0 p-3 transform translate-y-full group-hover/img:translate-y-0 transition-transform duration-300 flex justify-around text-xs font-semibold backdrop-blur-md z-10" style="background-color: var(--glass-bg); border-top: 1px solid var(--glass-border); color: var(--text);">
+                  <span>🛏️ 4 Dorm.</span>
+                  <span>🚿 4 Banho(s)</span>
+                  <span>🚗 3 Vagas</span>
+                  <span>📐 240 m²</span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-xs font-medium mb-1" style="color: var(--text-muted);">Pinheiros · São Paulo</div>
+                <h3 class="font-heading font-bold text-lg mb-2 cursor-pointer transition-colors" style="color: var(--heading);" onclick="openPropertyModal(4)">Cobertura Duplex com Vista Livre</h3>
+                <p class="text-2xl font-heading font-extrabold mb-4" style="color: var(--accent);">R$ 3.400.000</p>
+                <div class="grid grid-cols-4 gap-2 pt-4 text-center text-xs font-medium" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+                  <div><strong class="block font-bold" style="color: var(--text);">4</strong> Dorm.</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">4</strong> Banho(s)</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">3</strong> Vaga(s)</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">240 m²</strong> Área</div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                  <button type="button" onclick="openPropertyModal(4)" class="btn-pill py-2.5 font-heading font-semibold text-xs text-center transition-colors" style="background-color: var(--bg-alt); color: var(--text);">Ver detalhes</button>
+                  <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20saber%20mais%20sobre%20o%20imóvel:%20Cobertura%20Duplex%20Pinheiros%20(R$%203.400.000)." target="_blank" rel="noopener noreferrer" class="btn-pill btn-gold-shimmer py-2.5 font-heading font-bold text-xs text-center shadow-md flex items-center justify-center gap-1" style="background-color: var(--accent); color: var(--accent-contrast);"><span>Quero saber</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imóvel 5 -->
+          <div class="prop-card tilt-card rounded-3xl overflow-hidden transition-all duration-300 fade-up group relative" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);" data-category="terreno" data-id="5">
+            <div class="card-glare"></div>
+            <div class="tilt-card-inner">
+              <div class="relative aspect-16/10 overflow-hidden bg-slate-900 group/img">
+                <div class="gallery-track flex w-full h-full transition-transform duration-500">
+                  <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Terreno Cotia" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(5)" />
+                  <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Terreno Cotia - Verde" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(5)" />
+                  <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Terreno Cotia - Paisagem" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(5)" />
+                </div>
+                <button type="button" onclick="prevSlide(event, this)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">‹</button>
+                <button type="button" onclick="nextSlide(event, this)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">›</button>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                </div>
+                <div class="absolute top-4 left-4 flex gap-2 z-20">
+                  <span class="badge-shine px-3 py-1 rounded-full text-white text-xs font-semibold font-heading shadow-md" style="background-color: var(--heading);">Terreno</span>
+                  <span class="badge-shine px-3 py-1 rounded-full text-xs font-bold font-heading shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">Oportunidade</span>
+                </div>
+                <button type="button" onclick="toggleFavorite(event, this, 5)" aria-label="Favoritar este imóvel" class="fav-btn absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:scale-110 transition-all z-20">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <div class="absolute inset-x-0 bottom-0 p-3 transform translate-y-full group-hover/img:translate-y-0 transition-transform duration-300 flex justify-around text-xs font-semibold backdrop-blur-md z-10" style="background-color: var(--glass-bg); border-top: 1px solid var(--glass-border); color: var(--text);">
+                  <span>📐 450 m² Total</span>
+                  <span>🌳 Condomínio Fechado</span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-xs font-medium mb-1" style="color: var(--text-muted);">Cotia · Grande SP</div>
+                <h3 class="font-heading font-bold text-lg mb-2 cursor-pointer transition-colors" style="color: var(--heading);" onclick="openPropertyModal(5)">Terreno Plano em Condomínio</h3>
+                <p class="text-2xl font-heading font-extrabold mb-4" style="color: var(--accent);">R$ 410.000</p>
+                <div class="grid grid-cols-2 gap-2 pt-4 text-center text-xs font-medium" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+                  <div><strong class="block font-bold" style="color: var(--text);">450 m²</strong> Área Total</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">Condomínio Fechado</strong></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                  <button type="button" onclick="openPropertyModal(5)" class="btn-pill py-2.5 font-heading font-semibold text-xs text-center transition-colors" style="background-color: var(--bg-alt); color: var(--text);">Ver detalhes</button>
+                  <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20saber%20mais%20sobre%20o%20imóvel:%20Terreno%20em%20Cotia%20(R$%20410.000)." target="_blank" rel="noopener noreferrer" class="btn-pill btn-gold-shimmer py-2.5 font-heading font-bold text-xs text-center shadow-md flex items-center justify-center gap-1" style="background-color: var(--accent); color: var(--accent-contrast);"><span>Quero saber</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imóvel 6 -->
+          <div class="prop-card tilt-card rounded-3xl overflow-hidden transition-all duration-300 fade-up group relative" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);" data-category="comercial" data-id="6">
+            <div class="card-glare"></div>
+            <div class="tilt-card-inner">
+              <div class="relative aspect-16/10 overflow-hidden bg-slate-900 group/img">
+                <div class="gallery-track flex w-full h-full transition-transform duration-500">
+                  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Sala Faria Lima" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(6)" />
+                  <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80" alt="Sala Faria Lima - Recepção" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(6)" />
+                  <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Sala Faria Lima - Edifício" class="w-full h-full object-cover shrink-0 cursor-pointer" onclick="openPropertyModal(6)" />
+                </div>
+                <button type="button" onclick="prevSlide(event, this)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">‹</button>
+                <button type="button" onclick="nextSlide(event, this)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-20">›</button>
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                  <span class="gallery-dot w-2 h-2 rounded-full bg-white/50 transition-all"></span>
+                </div>
+                <div class="absolute top-4 left-4 flex gap-2 z-20">
+                  <span class="badge-shine px-3 py-1 rounded-full text-white text-xs font-semibold font-heading shadow-md" style="background-color: var(--heading);">Comercial</span>
+                  <span class="badge-shine px-3 py-1 rounded-full text-xs font-bold font-heading shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">Corporativo</span>
+                </div>
+                <button type="button" onclick="toggleFavorite(event, this, 6)" aria-label="Favoritar este imóvel" class="fav-btn absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:scale-110 transition-all z-20">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </button>
+                <div class="absolute inset-x-0 bottom-0 p-3 transform translate-y-full group-hover/img:translate-y-0 transition-transform duration-300 flex justify-around text-xs font-semibold backdrop-blur-md z-10" style="background-color: var(--glass-bg); border-top: 1px solid var(--glass-border); color: var(--text);">
+                  <span>🚗 2 Vagas</span>
+                  <span>📐 62 m² Privativa</span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="text-xs font-medium mb-1" style="color: var(--text-muted);">Faria Lima · São Paulo</div>
+                <h3 class="font-heading font-bold text-lg mb-2 cursor-pointer transition-colors" style="color: var(--heading);" onclick="openPropertyModal(6)">Sala Comercial Corporativa</h3>
+                <p class="text-2xl font-heading font-extrabold mb-4" style="color: var(--accent);">R$ 980.000</p>
+                <div class="grid grid-cols-2 gap-2 pt-4 text-center text-xs font-medium" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+                  <div><strong class="block font-bold" style="color: var(--text);">2</strong> Vagas</div>
+                  <div><strong class="block font-bold" style="color: var(--text);">62 m²</strong> Área Privativa</div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                  <button type="button" onclick="openPropertyModal(6)" class="btn-pill py-2.5 font-heading font-semibold text-xs text-center transition-colors" style="background-color: var(--bg-alt); color: var(--text);">Ver detalhes</button>
+                  <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20saber%20mais%20sobre%20o%20imóvel:%20Sala%20Comercial%20Faria%20Lima%20(R$%20980.000)." target="_blank" rel="noopener noreferrer" class="btn-pill btn-gold-shimmer py-2.5 font-heading font-bold text-xs text-center shadow-md flex items-center justify-center gap-1" style="background-color: var(--accent); color: var(--accent-contrast);"><span>Quero saber</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 7. COMO FUNCIONA ==================== -->
+    <section id="como-funciona" class="py-20" style="background-color: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+          <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Passo a Passo</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+            Como funciona a sua <span style="color: var(--accent);">jornada até as chaves</span>
+          </h2>
+          <p class="text-base mt-3" style="color: var(--text-muted);">Um processo claro, organizado e acompanhado de perto pela Adriana.</p>
+        </div>
+
+        <div class="relative">
+          <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2 z-0" style="background-color: var(--border);">
+            <div id="timeline-bar" class="h-full transition-all duration-300" style="width: 0%; background-color: var(--accent);"></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative z-10">
+            
+            <div class="timeline-step p-6 rounded-3xl text-center fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+              <div class="w-12 h-12 rounded-2xl font-heading font-extrabold text-lg flex items-center justify-center mx-auto mb-4 shadow-md" style="background-color: var(--navy-bg); color: var(--accent);">01</div>
+              <h3 class="font-heading font-bold text-base mb-2" style="color: var(--heading);">Conversa Inicial & Perfil</h3>
+              <p class="text-xs leading-relaxed" style="color: var(--text-muted);">Entendimento das suas reais preferências, orçamento e planejamento da família.</p>
+            </div>
+
+            <div class="timeline-step p-6 rounded-3xl text-center fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+              <div class="w-12 h-12 rounded-2xl font-heading font-extrabold text-lg flex items-center justify-center mx-auto mb-4 shadow-md" style="background-color: var(--navy-bg); color: var(--accent);">02</div>
+              <h3 class="font-heading font-bold text-base mb-2" style="color: var(--heading);">Seleção & Visitas Guiadas</h3>
+              <p class="text-xs leading-relaxed" style="color: var(--text-muted);">Curadoria dos imóveis mais aderentes e visitas acompanhadas pessoalmente.</p>
+            </div>
+
+            <div class="timeline-step p-6 rounded-3xl text-center fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+              <div class="w-12 h-12 rounded-2xl font-heading font-extrabold text-lg flex items-center justify-center mx-auto mb-4 shadow-md" style="background-color: var(--navy-bg); color: var(--accent);">03</div>
+              <h3 class="font-heading font-bold text-base mb-2" style="color: var(--heading);">Proposta & Negociação</h3>
+              <p class="text-xs leading-relaxed" style="color: var(--text-muted);">Elaboração estratégica da oferta defendendo o seu interesse com valor justo.</p>
+            </div>
+
+            <div class="timeline-step p-6 rounded-3xl text-center fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+              <div class="w-12 h-12 rounded-2xl font-heading font-extrabold text-lg flex items-center justify-center mx-auto mb-4 shadow-md" style="background-color: var(--navy-bg); color: var(--accent);">04</div>
+              <h3 class="font-heading font-bold text-base mb-2" style="color: var(--heading);">Documentos & Crédito</h3>
+              <p class="text-xs leading-relaxed" style="color: var(--text-muted);">Checagem jurídica completa de certidões e aprovação do crédito bancário.</p>
+            </div>
+
+            <div class="timeline-step p-6 rounded-3xl text-center fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+              <div class="w-12 h-12 rounded-2xl font-heading font-extrabold text-lg flex items-center justify-center mx-auto mb-4 shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">05</div>
+              <h3 class="font-heading font-bold text-base mb-2" style="color: var(--heading);">Escritura & Entrega</h3>
+              <p class="text-xs leading-relaxed" style="color: var(--text-muted);">Acompanhamento presencial no Cartório e a grande conquista das chaves.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 8. GUIA DO CLIENTE ==================== -->
+    <section id="guia-cliente" class="py-20" style="background-color: var(--bg);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+          <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Guia Prático</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+            Informações essenciais que <span style="color: var(--accent);">você precisa saber</span>
+          </h2>
+          <p class="text-base mt-3" style="color: var(--text-muted);">Orientações objetivas para se preparar antes de comprar ou vender seu bem.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <div class="p-8 rounded-3xl fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div class="w-12 h-12 rounded-xl text-white flex items-center justify-center mb-6" style="background-color: var(--primary);">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <h3 class="font-heading font-bold text-xl mb-3" style="color: var(--heading);">Documentos Necessários</h3>
+            <ul class="space-y-3 text-sm leading-relaxed" style="color: var(--text-muted);">
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Compradores:</strong> RG, CPF, comprovante de residência, estado civil e comprovante de renda atual.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Vendedores:</strong> Certidões negativas de débitos, comprovantes do IPTU e dados pessoais completos.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Imóvel:</strong> Matrícula atualizada junto ao Cartório de Registro de Imóveis competente.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-8 rounded-3xl fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div class="w-12 h-12 rounded-xl text-white flex items-center justify-center mb-6" style="background-color: var(--primary);">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="font-heading font-bold text-xl mb-3" style="color: var(--heading);">Custos Extras & FGTS</h3>
+            <ul class="space-y-3 text-sm leading-relaxed" style="color: var(--text-muted);">
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">ITBI:</strong> Imposto municipal pago na compra (em média de 2% a 3% do valor venal).</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Escritura & Registro:</strong> Custos de cartório para formalizar a transferência de propriedade.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Uso do FGTS:</strong> Pode ser abatido no valor da entrada ou usado para diminuir parcelas.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-8 rounded-3xl fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+            <div class="w-12 h-12 rounded-xl text-white flex items-center justify-center mb-6" style="background-color: var(--primary);">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="font-heading font-bold text-xl mb-3" style="color: var(--heading);">Dicas para Vender Mais Rápido</h3>
+            <ul class="space-y-3 text-sm leading-relaxed" style="color: var(--text-muted);">
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Pintura Neutra:</strong> Ambientes claros trazem sensação de amplitude e limpeza aos visitantes.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Pequenos Reparos:</strong> Torneiras, fechaduras e iluminação funcionando aumentam a valorização.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold" style="color: var(--accent);">•</span>
+                <span><strong style="color: var(--text);">Fotos Profissionais:</strong> Uma boa produção atrai mais interessados em portais imobiliários.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 9. SIMULADOR DE FINANCIAMENTO ==================== -->
+    <section id="simulador" class="py-20 text-white relative overflow-hidden" style="background: linear-gradient(135deg, var(--hero-bg-from), var(--hero-bg-via), var(--hero-bg-to));">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+          <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(245, 181, 10, 0.2); color: var(--accent);">Planejamento Financeiro</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-4xl text-white">
+            Simulador de <span style="color: var(--accent);">Financiamento Imobiliário</span>
+          </h2>
+          <p class="text-white/80 text-base mt-3">Calcule a estimativa das suas parcelas com a ajuda da Adriana.</p>
+        </div>
+
+        <div class="rounded-3xl p-6 sm:p-10 shadow-lg max-w-4xl mx-auto fade-up" style="background-color: var(--surface); border: 1px solid var(--border); color: var(--text);">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-5">
+              
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1" style="color: var(--heading);">
+                  <span>Valor do Imóvel:</span>
+                  <span id="display-sim-property" class="font-bold" style="color: var(--primary);">R$ 1.250.000</span>
+                </div>
+                <input type="range" id="sim-property" min="200000" max="5000000" step="50000" value="1250000" 
+                       class="w-full h-2 rounded-lg cursor-pointer" style="accent-color: var(--primary);" oninput="updateSim()" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1" style="color: var(--heading);">
+                  <span>Valor de Entrada (mínimo 20%):</span>
+                  <span id="display-sim-down" class="font-bold" style="color: var(--primary);">R$ 250.000</span>
+                </div>
+                <input type="range" id="sim-down" min="40000" max="4000000" step="25000" value="250000" 
+                       class="w-full h-2 rounded-lg cursor-pointer" style="accent-color: var(--primary);" oninput="updateSim()" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="sim-years" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Prazo de Financiamento</label>
+                  <select id="sim-years" onchange="updateSim()" class="w-full px-4 py-2.5 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);">
+                    <option value="15">15 anos (180 meses)</option>
+                    <option value="20">20 anos (240 meses)</option>
+                    <option value="25">25 anos (300 meses)</option>
+                    <option value="30" selected>30 anos (360 meses)</option>
+                    <option value="35">35 anos (420 meses)</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="sim-rate" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Taxa de Juros Anual</label>
+                  <select id="sim-rate" onchange="updateSim()" class="w-full px-4 py-2.5 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);">
+                    <option value="9.5">9,5% a.a.</option>
+                    <option value="10.5" selected>10,5% a.a. (Média de Mercado)</option>
+                    <option value="11.5">11,5% a.a.</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="lg:col-span-5 p-6 rounded-2xl text-center flex flex-col justify-between" style="background-color: var(--surface-2); border: 1px solid var(--border);">
+              <div>
+                <span class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--text-muted);">Parcela Inicial Estimada</span>
+                <span id="res-monthly" class="block font-heading font-extrabold text-3xl sm:text-4xl mb-4" style="color: var(--primary);">R$ 9.650</span>
+                
+                <div class="space-y-2 text-xs text-left pt-4" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+                  <div class="flex justify-between">
+                    <span>Valor Financiado:</span>
+                    <strong id="res-financed" style="color: var(--text);">R$ 1.000.000</strong>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Renda Familiar Recomendada:</span>
+                    <strong id="res-income" style="color: var(--text);">R$ 32.130</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4" style="border-top: 1px solid var(--border);">
+                <a id="sim-whatsapp-btn" href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Fiz%20uma%20simulação%20no%20site%20para%20um%20imóvel%20e%20gostaria%20de%20atendimento." 
+                   target="_blank" rel="noopener noreferrer" 
+                   class="btn-pill btn-gold-shimmer w-full py-3 font-heading font-bold text-xs shadow-md block text-center" style="background-color: var(--accent); color: var(--accent-contrast);">
+                  Solicitar Simulação Oficial com Adriana
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <p class="text-xs text-center italic mt-6" style="color: var(--text-muted);">
+            * Simulação ilustrativa com base na Tabela Price. Sujeita a análise de crédito pelas instituições financeiras.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 10. AVALIE SEU IMÓVEL ==================== -->
+    <section id="avaliacao" class="py-20" style="background-color: var(--bg-alt);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 fade-up">
+            <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Avaliação Gratuita</span>
+            <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight mb-4" style="color: var(--heading);">
+              Quer vender ou alugar? <span style="color: var(--accent);">Descubra o valor real</span> do seu imóvel
+            </h2>
+            <p class="text-base mb-6 leading-relaxed" style="color: var(--text-muted);">
+              Preencha o formulário para receber uma análise comparativa de mercado elaborada pessoalmente pela Adriana Monteiro, sem custos nem compromisso.
+            </p>
+            
+            <div class="space-y-4">
+              <div class="flex items-center gap-3 text-sm font-medium" style="color: var(--text);">
+                <div class="w-8 h-8 rounded-full font-bold flex items-center justify-center" style="background-color: rgba(245, 181, 10, 0.2); color: var(--heading);">✓</div>
+                <span>Estudo fundamentado com vendas recentes em São Paulo</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm font-medium" style="color: var(--text);">
+                <div class="w-8 h-8 rounded-full font-bold flex items-center justify-center" style="background-color: rgba(245, 181, 10, 0.2); color: var(--heading);">✓</div>
+                <span>Estratégia de comercialização sob medida</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm font-medium" style="color: var(--text);">
+                <div class="w-8 h-8 rounded-full font-bold flex items-center justify-center" style="background-color: rgba(245, 181, 10, 0.2); color: var(--heading);">✓</div>
+                <span>Atendimento totalmente sigiloso e exclusivo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 p-8 rounded-3xl shadow-md fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <form id="evaluation-form" onsubmit="handleEvaluationSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="eval-type" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Tipo de Imóvel</label>
+                  <select id="eval-type" required class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);">
+                    <option value="">Selecione...</option>
+                    <option value="apartamento">Apartamento</option>
+                    <option value="casa">Casa</option>
+                    <option value="terreno">Terreno</option>
+                    <option value="comercial">Comercial</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="eval-area" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Metragem Aproximada (m²)</label>
+                  <input type="number" id="eval-area" placeholder="Ex: 110" required 
+                         class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);" />
+                </div>
+              </div>
+
+              <div>
+                <label for="eval-neighborhood" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Bairro e Cidade</label>
+                <input type="text" id="eval-neighborhood" placeholder="Ex: Moema, São Paulo" required 
+                       class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="eval-name" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Seu Nome Completo</label>
+                  <input type="text" id="eval-name" placeholder="Seu nome" required 
+                         class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);" />
+                </div>
+                <div>
+                  <label for="eval-phone" class="block text-xs font-semibold mb-1" style="color: var(--heading);">WhatsApp / Telefone</label>
+                  <input type="tel" id="eval-phone" placeholder="(11) 90000-0000" required 
+                         class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);" />
+                </div>
+              </div>
+
+              <button type="submit" 
+                      class="btn-pill btn-gold-shimmer w-full py-4 font-heading font-bold text-sm shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">
+                Receber avaliação gratuita
+              </button>
+              
+              <div id="eval-success" class="hidden p-4 rounded-xl text-xs font-medium text-center" style="background-color: rgba(16, 185, 129, 0.15); color: #10B981;">
+                ✓ Solicitação enviada! A Adriana Monteiro entrará em contato em breve.
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 11. DEPOIMENTOS ==================== -->
+    <section id="depoimentos" class="py-20" style="background-color: var(--bg);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+          <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Histórias Reais</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+            O que dizem os meus <span style="color: var(--accent);">clientes</span>
+          </h2>
+          <p class="text-base mt-3" style="color: var(--text-muted);">Relatos de quem comprou, vendeu ou investiu com a consultoria da Adriana Monteiro.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="p-8 rounded-3xl shadow-sm flex flex-col justify-between fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <div>
+              <div class="flex mb-4" style="color: var(--accent);">
+                ★★★★★
+              </div>
+              <p class="text-sm italic leading-relaxed mb-6" style="color: var(--text-muted);">
+                "A Adriana nos atendeu com extrema clareza e agilidade durante a escolha do nosso apartamento. Sentimos total segurança em cada etapa do contrato e do financiamento bancário."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid var(--border);">
+              <div class="w-10 h-10 rounded-full font-heading font-bold flex items-center justify-center text-sm" style="background-color: var(--primary); color: #FFFFFF;">
+                CF
+              </div>
+              <div>
+                <span class="block font-heading font-bold text-sm" style="color: var(--heading);">Carlos e Fernanda S.</span>
+                <span class="block text-xs" style="color: var(--text-muted);">Compradores em Moema</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-8 rounded-3xl shadow-sm flex flex-col justify-between fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <div>
+              <div class="flex mb-4" style="color: var(--accent);">
+                ★★★★★
+              </div>
+              <p class="text-sm italic leading-relaxed mb-6" style="color: var(--text-muted);">
+                "Vendi minha casa com a Adriana em menos de um mês e pelo valor de avaliação de mercado. Ela cuidou de toda a documentação com uma transparência impecável do início ao fim."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid var(--border);">
+              <div class="w-10 h-10 rounded-full font-heading font-bold flex items-center justify-center text-sm" style="background-color: var(--navy-bg); color: var(--accent);">
+                JM
+              </div>
+              <div>
+                <span class="block font-heading font-bold text-sm" style="color: var(--heading);">Juliana M.</span>
+                <span class="block text-xs" style="color: var(--text-muted);">Vendedora em Alphaville</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-8 rounded-3xl shadow-sm flex flex-col justify-between fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <div>
+              <div class="flex mb-4" style="color: var(--accent);">
+                ★★★★★
+              </div>
+              <p class="text-sm italic leading-relaxed mb-6" style="color: var(--text-muted);">
+                "Atendimento excepcional para quem busca investir em São Paulo. A Adriana entende muito do mercado local e conduziu uma negociação extremamente rápida e vantajosa."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid var(--border);">
+              <div class="w-10 h-10 rounded-full font-heading font-bold flex items-center justify-center text-sm" style="background-color: var(--primary); color: #FFFFFF;">
+                RT
+              </div>
+              <div>
+                <span class="block font-heading font-bold text-sm" style="color: var(--heading);">Ricardo T.</span>
+                <span class="block text-xs" style="color: var(--text-muted);">Investidor Imobiliário</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 12. FAQ (PERGUNTAS FREQUENTES) ==================== -->
+    <section id="faq" class="py-20" style="background-color: var(--bg-alt);">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16 fade-up">
+          <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase mb-3" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Tire Suas Dúvidas</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+            Perguntas <span style="color: var(--accent);">Frequentes</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          
+          <div class="rounded-2xl shadow-sm overflow-hidden fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <button type="button" class="faq-btn w-full p-6 text-left flex justify-between items-center font-heading font-bold text-base transition-colors" style="color: var(--heading);" onclick="toggleFaq(this)">
+              <span>Quais documentos são necessários para comprar um imóvel?</span>
+              <svg class="faq-icon w-5 h-5 transition-transform duration-300" style="color: var(--icon);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-sm leading-relaxed" style="color: var(--text-muted);">
+              Para o comprador, são necessários documento oficial de identidade (RG ou CNH), CPF, comprovante de residência recente, certidão de estado civil e comprovante de renda (holerites, extratos ou IR). Caso haja financiamento, a instituição financeira fará a conferência detalhada desses itens.
+            </div>
+          </div>
+
+          <div class="rounded-2xl shadow-sm overflow-hidden fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <button type="button" class="faq-btn w-full p-6 text-left flex justify-between items-center font-heading font-bold text-base transition-colors" style="color: var(--heading);" onclick="toggleFaq(this)">
+              <span>Quais documentos o vendedor precisa apresentar?</span>
+              <svg class="faq-icon w-5 h-5 transition-transform duration-300" style="color: var(--icon);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-sm leading-relaxed" style="color: var(--text-muted);">
+              O proprietário vendedor deve apresentar documentos pessoais (RG, CPF e estado civil), certidões negativas de débitos (trabalhistas, cíveis e federais), além da matrícula atualizada do imóvel (com negativa de ônus) e capa do IPTU.
+            </div>
+          </div>
+
+          <div class="rounded-2xl shadow-sm overflow-hidden fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <button type="button" class="faq-btn w-full p-6 text-left flex justify-between items-center font-heading font-bold text-base transition-colors" style="color: var(--heading);" onclick="toggleFaq(this)">
+              <span>Como funciona o financiamento imobiliário na prática?</span>
+              <svg class="faq-icon w-5 h-5 transition-transform duration-300" style="color: var(--icon);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-sm leading-relaxed" style="color: var(--text-muted);">
+              O comprador faz a simulação e aprovação do crédito com o banco, paga um percentual de entrada diretamente ao vendedor (geralmente a partir de 20%) e financia o saldo restante em até 35 anos. A Adriana orienta toda a montagem da pasta até a assinatura final.
+            </div>
+          </div>
+
+          <div class="rounded-2xl shadow-sm overflow-hidden fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <button type="button" class="faq-btn w-full p-6 text-left flex justify-between items-center font-heading font-bold text-base transition-colors" style="color: var(--heading);" onclick="toggleFaq(this)">
+              <span>Posso usar o meu FGTS no processo de compra?</span>
+              <svg class="faq-icon w-5 h-5 transition-transform duration-300" style="color: var(--icon);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-sm leading-relaxed" style="color: var(--text-muted);">
+              Sim! Desde que você possua pelo menos 3 anos de trabalho sob regime do FGTS, não tenha outro imóvel residencial urbano no mesmo município e o imóvel pretendido esteja dentro das diretrizes do SFH.
+            </div>
+          </div>
+
+          <div class="rounded-2xl shadow-sm overflow-hidden fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <button type="button" class="faq-btn w-full p-6 text-left flex justify-between items-center font-heading font-bold text-base transition-colors" style="color: var(--heading);" onclick="toggleFaq(this)">
+              <span>Quais são os custos além do valor negociado do imóvel?</span>
+              <svg class="faq-icon w-5 h-5 transition-transform duration-300" style="color: var(--icon);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-sm leading-relaxed" style="color: var(--text-muted);">
+              O comprador deve planejar aproximadamente 4% a 5% sobre o valor da transação para arcar com o ITBI (Imposto sobre Transmissão de Bens Imóveis), custos cartorários de escritura pública (se à vista) e o registro oficial na matrícula.
+            </div>
+          </div>
+
+          <div class="rounded-2xl shadow-sm overflow-hidden fade-up" style="background-color: var(--surface); border: 1px solid var(--border);">
+            <button type="button" class="faq-btn w-full p-6 text-left flex justify-between items-center font-heading font-bold text-base transition-colors" style="color: var(--heading);" onclick="toggleFaq(this)">
+              <span>Quanto tempo demora em média para concluir uma venda?</span>
+              <svg class="faq-icon w-5 h-5 transition-transform duration-300" style="color: var(--icon);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-sm leading-relaxed" style="color: var(--text-muted);">
+              Transações à vista costumam ser finalizadas em 10 a 20 dias. Vendas que envolvem financiamento bancário ou uso do FGTS levam em média de 30 a 60 dias para a liberação total do contrato e registro final.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 13. BANNER CHAMADA FINAL ==================== -->
+    <section class="relative text-white py-20 overflow-hidden spotlight-container" style="background: linear-gradient(135deg, var(--banner-bg-from), var(--banner-bg-via), var(--banner-bg-to));">
+      <div class="spotlight-glow" id="banner-spotlight"></div>
+      
+      <div class="absolute inset-0 z-0 opacity-20">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80" 
+             alt="Fachada residencial moderna à noite" 
+             class="w-full h-full object-cover" />
+      </div>
+
+      <div class="relative z-10 max-w-5xl mx-auto px-4 text-center fade-up">
+        <h2 class="font-heading font-bold text-3xl sm:text-5xl text-white mb-6 leading-tight">
+          Vamos encontrar o seu <span style="color: var(--accent);">imóvel ideal</span> juntos?
+        </h2>
+        <p class="text-white/85 text-lg max-w-2xl mx-auto mb-8">
+          Fale diretamente com a Adriana Monteiro no WhatsApp para um atendimento personalizado e sem compromisso.
+        </p>
+        <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Vi%20sua%20página%20e%20gostaria%20de%20atendimento." 
+           target="_blank" rel="noopener noreferrer" 
+           class="btn-pill btn-gold-shimmer magnetic-btn inline-flex items-center gap-3 px-10 py-5 font-heading font-bold text-base shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/></svg>
+          <span>Entrar em contato</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==================== 14. CONTATO ==================== -->
+    <section id="contato" class="py-20" style="background-color: var(--bg);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <div class="lg:col-span-5 space-y-6 fade-up">
+            <span class="inline-block px-3.5 py-1.5 rounded-full font-semibold text-xs tracking-wider uppercase" style="background-color: rgba(31, 79, 163, 0.1); color: var(--primary);">Fale Conosco</span>
+            <h2 class="font-heading font-bold text-3xl sm:text-4xl leading-tight" style="color: var(--heading);">
+              Canais diretos de <span style="color: var(--accent);">atendimento</span>
+            </h2>
+            <p class="text-base leading-relaxed" style="color: var(--text-muted);">
+              Estou à disposição para responder suas dúvidas, agendar visitas ou avaliar a sua propriedade.
+            </p>
+
+            <div class="space-y-4 pt-4">
+              
+              <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Vi%20sua%20página%20e%20gostaria%20de%20atendimento." 
+                 target="_blank" rel="noopener noreferrer" 
+                 class="flex items-center gap-4 p-4 rounded-2xl transition-all group" style="background-color: var(--surface); border: 1px solid var(--border);">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/></svg>
+                </div>
+                <div>
+                  <span class="block text-xs font-semibold uppercase" style="color: var(--text-muted);">WhatsApp Direto</span>
+                  <span class="block text-base font-bold transition-colors" style="color: var(--heading);">(11) 90000-0000</span>
+                </div>
+              </a>
+
+              <a href="mailto:contato@adrianamonteiro.com.br" 
+                 class="flex items-center gap-4 p-4 rounded-2xl transition-all group" style="background-color: var(--surface); border: 1px solid var(--border);">
+                <div class="w-12 h-12 rounded-xl text-white flex items-center justify-center shadow-md" style="background-color: var(--primary);">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                  <span class="block text-xs font-semibold uppercase" style="color: var(--text-muted);">E-mail Profissional</span>
+                  <span class="block text-base font-bold transition-colors" style="color: var(--heading);">contato@adrianamonteiro.com.br</span>
+                </div>
+              </a>
+
+              <a href="https://instagram.com/adrianamonteiro.imoveis" target="_blank" rel="noopener noreferrer" 
+                 class="flex items-center gap-4 p-4 rounded-2xl transition-all group" style="background-color: var(--surface); border: 1px solid var(--border);">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shadow-md">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </div>
+                <div>
+                  <span class="block text-xs font-semibold uppercase" style="color: var(--text-muted);">Siga no Instagram</span>
+                  <span class="block text-base font-bold transition-colors" style="color: var(--heading);">@adrianamonteiro.imoveis</span>
+                </div>
+              </a>
+
+            </div>
+
+            <div class="p-4 rounded-2xl text-xs space-y-1" style="background-color: var(--surface); border: 1px solid var(--border); color: var(--text-muted);">
+              <strong class="block font-semibold" style="color: var(--heading);">Horário de Atendimento:</strong>
+              <p>Segunda a Sexta-feira: 09h às 18h</p>
+              <p>Sábados: 09h às 13h</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 p-8 rounded-3xl shadow-sm fade-up" style="background-color: var(--bg-alt); border: 1px solid var(--border);">
+            <h3 class="font-heading font-bold text-2xl mb-2" style="color: var(--heading);">Envie uma mensagem</h3>
+            <p class="text-sm mb-6" style="color: var(--text-muted);">Preencha o formulário abaixo que retornarei em breve.</p>
+
+            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+              <div>
+                <label for="c-name" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Seu Nome *</label>
+                <input type="text" id="c-name" required placeholder="Digite seu nome completo" 
+                       class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--surface); border: 1px solid var(--input-border); color: var(--input-text);" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="c-phone" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Telefone / WhatsApp *</label>
+                  <input type="tel" id="c-phone" required placeholder="(11) 90000-0000" 
+                         class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--surface); border: 1px solid var(--input-border); color: var(--input-text);" />
+                </div>
+                <div>
+                  <label for="c-email" class="block text-xs font-semibold mb-1" style="color: var(--heading);">E-mail *</label>
+                  <input type="email" id="c-email" required placeholder="seuemail@exemplo.com" 
+                         class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--surface); border: 1px solid var(--input-border); color: var(--input-text);" />
+                </div>
+              </div>
+
+              <div>
+                <label for="c-interest" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Assunto / Qual o seu interesse?</label>
+                <select id="c-interest" class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--surface); border: 1px solid var(--input-border); color: var(--input-text);">
+                  <option value="comprar">Quero comprar um imóvel</option>
+                  <option value="vender">Quero vender meu imóvel</option>
+                  <option value="investir">Quero investir em imóveis</option>
+                  <option value="duvidas">Tirar dúvidas sobre financiamento</option>
+                  <option value="outro">Outro assunto</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="c-message" class="block text-xs font-semibold mb-1" style="color: var(--heading);">Mensagem (opcional)</label>
+                <textarea id="c-message" rows="4" placeholder="Conte um pouco sobre o imóvel que você procura ou deseja vender..." 
+                          class="w-full px-4 py-3 rounded-xl text-sm font-medium focus:outline-none" style="background-color: var(--surface); border: 1px solid var(--input-border); color: var(--input-text);"></textarea>
+              </div>
+
+              <button type="submit" 
+                      class="btn-pill btn-gold-shimmer w-full py-4 text-white font-heading font-semibold text-sm shadow-md" style="background-color: var(--primary);">
+                Enviar mensagem para Adriana
+              </button>
+
+              <div id="contact-success" class="hidden p-4 rounded-xl text-xs font-medium text-center" style="background-color: rgba(16, 185, 129, 0.15); color: #10B981;">
+                ✓ Mensagem enviada com sucesso! A Adriana entrará em contato em breve.
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 15. RODAPÉ ==================== -->
+  <footer class="text-white pt-16 pb-12" style="background-color: var(--footer-bg); border-top: 1px solid var(--footer-border);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+        
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl font-bold text-xl flex items-center justify-center shadow-md" style="background-color: var(--accent); color: var(--accent-contrast);">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block font-heading font-bold text-base sm:text-lg text-white leading-tight">Adriana Monteiro <span class="font-normal text-white/70">| Corretora</span></span>
+              <span class="block text-xs font-semibold" style="color: var(--accent);">CRECI-SP 123456-F</span>
+            </div>
+          </div>
+          <p class="text-white/70 text-sm leading-relaxed max-w-sm">
+            Consultoria imobiliária personalizada em São Paulo e Grande São Paulo. Compra, venda, locação e investimento com ética e segurança.
+          </p>
+          <p class="text-white/50 text-xs italic">
+            Informações e valores de exemplo, sujeitos a alteração.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider" style="color: var(--accent);">Navegação</h4>
+          <ul class="space-y-2 text-sm text-white/80">
+            <li><a href="#inicio" class="hover:text-amber-400 transition-colors">Início</a></li>
+            <li><a href="#imoveis" class="hover:text-amber-400 transition-colors">Imóveis em Destaque</a></li>
+            <li><a href="#servicos" class="hover:text-amber-400 transition-colors">Serviços Prestados</a></li>
+            <li><a href="#sobre" class="hover:text-amber-400 transition-colors">Sobre a Corretora</a></li>
+            <li><a href="#simulador" class="hover:text-amber-400 transition-colors">Simulador de Crédito</a></li>
+            <li><a href="#contato" class="hover:text-amber-400 transition-colors">Fale Conosco</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4 space-y-3">
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider" style="color: var(--accent);">Atendimento</h4>
+          <p class="text-sm text-white/80">Região de Atuação: <strong>São Paulo e Grande SP</strong></p>
+          <p class="text-sm text-white/80">WhatsApp: <strong>(11) 90000-0000</strong></p>
+          <p class="text-sm text-white/80">E-mail: <strong>contato@adrianamonteiro.com.br</strong></p>
+          
+          <div class="pt-2 flex items-center gap-3">
+            <a href="https://instagram.com/adrianamonteiro.imoveis" target="_blank" rel="noopener noreferrer" 
+               class="w-9 h-9 rounded-full bg-white/10 hover:bg-amber-400 hover:text-slate-900 text-white flex items-center justify-center transition-colors" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/5511900000000" target="_blank" rel="noopener noreferrer" 
+               class="w-9 h-9 rounded-full bg-white/10 hover:bg-amber-400 hover:text-slate-900 text-white flex items-center justify-center transition-colors" aria-label="WhatsApp">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 text-center text-xs text-white/50">
+        <p>© 2026 Adriana Monteiro | Corretora de Imóveis - CRECI-SP 123456-F. Todos os direitos reservados.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== 16. BOTÃO FLUTUANTE DE WHATSAPP ==================== -->
+  <div class="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+    <div class="hidden sm:block px-3.5 py-1.5 rounded-full shadow-md text-xs font-semibold font-heading" style="background-color: var(--surface); color: var(--heading); border: 1px solid var(--border);">
+      Fale com a Adriana no WhatsApp
+    </div>
+    <a href="https://wa.me/5511900000000?text=Olá,%20Adriana!%20Vi%20sua%20página%20e%20gostaria%20de%20atendimento." 
+       target="_blank" rel="noopener noreferrer" 
+       class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform" 
+       aria-label="Falar no WhatsApp">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ==================== MODAL DE DETALHES DO IMÓVEL ==================== -->
+  <div id="property-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-md transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8 relative transform scale-95 transition-transform duration-300" id="modal-content" style="background-color: var(--surface); border: 1px solid var(--border); color: var(--text);">
+      
+      <button type="button" onclick="closePropertyModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg focus:outline-none" style="background-color: var(--input-bg); color: var(--text);" aria-label="Fechar janela">✕</button>
+
+      <div class="relative aspect-16/9 rounded-2xl overflow-hidden mb-4 bg-slate-900">
+        <img id="modal-main-img" src="" alt="Foto principal do imóvel" class="w-full h-full object-cover" />
+      </div>
+      <div id="modal-thumbs" class="flex gap-2 mb-6 overflow-x-auto pb-2"></div>
+
+      <div class="space-y-4">
+        <div class="flex justify-between items-start gap-4">
+          <div>
+            <span id="modal-badge" class="px-3 py-1 rounded-full text-white text-xs font-semibold" style="background-color: var(--primary);"></span>
+            <h3 id="modal-title" class="font-heading font-bold text-2xl mt-2" style="color: var(--heading);"></h3>
+            <p id="modal-location" class="text-sm" style="color: var(--text-muted);"></p>
+          </div>
+          <div class="text-right">
+            <span class="block text-xs uppercase font-semibold" style="color: var(--text-muted);">Valor de Venda</span>
+            <span id="modal-price" class="font-heading font-extrabold text-3xl" style="color: var(--accent);"></span>
+          </div>
+        </div>
+
+        <div id="modal-specs" class="grid grid-cols-4 gap-2 p-4 rounded-2xl text-center text-xs font-semibold" style="background-color: var(--surface-2); border: 1px solid var(--border); color: var(--text);"></div>
+
+        <div class="pt-2">
+          <h4 class="font-heading font-bold text-base mb-2" style="color: var(--heading);">Descrição do Imóvel</h4>
+          <p id="modal-description" class="text-sm leading-relaxed" style="color: var(--text-muted);"></p>
+        </div>
+
+        <div class="pt-2">
+          <h4 class="font-heading font-bold text-base mb-2" style="color: var(--heading);">Destaques e Diferenciais</h4>
+          <ul id="modal-features" class="grid grid-cols-2 gap-2 text-xs" style="color: var(--text-muted);"></ul>
+        </div>
+
+        <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4" style="border-top: 1px solid var(--border);">
+          <span class="text-xs" style="color: var(--text-muted);">Atendimento direto com a corretora Adriana Monteiro</span>
+          <a id="modal-wa-btn" href="#" target="_blank" rel="noopener noreferrer" 
+             class="btn-pill btn-gold-shimmer w-full sm:w-auto px-8 py-3.5 font-heading font-bold text-sm shadow-md text-center block" style="background-color: var(--accent); color: var(--accent-contrast);">
+            Falar no WhatsApp sobre este imóvel
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODAL DE FAVORITOS ==================== -->
+  <div id="fav-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-md" role="dialog" aria-modal="true">
+    <div class="rounded-3xl max-w-lg w-full p-6 shadow-2xl relative" style="background-color: var(--surface); border: 1px solid var(--border); color: var(--text);">
+      <button type="button" onclick="closeFavoritesModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center" style="background-color: var(--input-bg); color: var(--text);">✕</button>
+      <h3 class="font-heading font-bold text-xl mb-4" style="color: var(--heading);">Meus Imóveis Favoritados</h3>
+      <div id="fav-modal-list" class="space-y-3 max-h-96 overflow-y-auto pr-1"></div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT VANILLA & EFEITOS ==================== -->
+  <script>
+    // BASE DE DADOS DOS 6 IMÓVEIS
+    const PROPERTIES_DATA = {
+      1: {
+        id: 1,
+        title: "Apartamento com Varanda Gourmet",
+        category: "apartamento",
+        type: "Apartamento",
+        neighborhood: "Moema · São Paulo",
+        price: "R$ 1.250.000",
+        dorms: "3", baths: "2", parking: "2", area: "110 m²",
+        images: [
+          "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+        ],
+        desc: "Excelente apartamento reformado em andar alto no coração de Moema. Varanda gourmet integrada à ampla sala de estar, acabamentos em madeira nobre e suíte principal com closet.",
+        features: ["✓ Varanda Gourmet integrada", "✓ Andar alto com vista livre", "✓ Suíte master com closet", "✓ Condomínio com lazer completo"]
+      },
+      2: {
+        id: 2,
+        title: "Casa em Condomínio Fechado",
+        category: "casa",
+        type: "Casa em Condomínio",
+        neighborhood: "Alphaville · Grande SP",
+        price: "R$ 2.890.000",
+        dorms: "4", baths: "5", parking: "4", area: "320 m²",
+        images: [
+          "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
+        ],
+        desc: "Residência contemporânea de altíssimo padrão em Alphaville. Projeto arquitetônico integrado com piscina aquecida, espaço gourmet amplo e 4 suítes climatizadas.",
+        features: ["✓ Piscina aquecida privativa", "✓ 4 Suítes completas", "✓ Segurança 24 horas", "✓ Paisagismo assinado"]
+      },
+      3: {
+        id: 3,
+        title: "Studio Moderno e Integrado",
+        category: "apartamento",
+        type: "Studio",
+        neighborhood: "Vila Madalena · São Paulo",
+        price: "R$ 520.000",
+        dorms: "1", baths: "1", parking: "1", area: "38 m²",
+        images: [
+          "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80"
+        ],
+        desc: "Studio super charmoso e funcional na Vila Madalena, ideal para moradia ou investimento em rentabilidade. Prédio novo com rooftop, piscina de borda infinita e coworking.",
+        features: ["✓ Prédio novíssimo com Rooftop", "✓ Alta rentabilidade para locação", "✓ Perto do Metrô Vila Madalena", "✓ 1 Vaga coberta de garagem"]
+      },
+      4: {
+        id: 4,
+        title: "Cobertura Duplex com Vista Livre",
+        category: "apartamento",
+        type: "Cobertura Duplex",
+        neighborhood: "Pinheiros · São Paulo",
+        price: "R$ 3.400.000",
+        dorms: "4", baths: "4", parking: "3", area: "240 m²",
+        images: [
+          "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+        ],
+        desc: "Cobertura espetacular em Pinheiros com terraço privativo, churrasqueira e jacuzzi. Planta bem distribuída com iluminação natural abundante em todas as suítes.",
+        features: ["✓ Terraço com jacuzzi privativa", "✓ Vista 360 graus de São Paulo", "✓ 3 Vagas determinadas", "✓ Depósito privativo na garagem"]
+      },
+      5: {
+        id: 5,
+        title: "Terreno Plano em Condomínio",
+        category: "terreno",
+        type: "Terreno",
+        neighborhood: "Cotia · Grande SP",
+        price: "R$ 410.000",
+        dorms: "-", baths: "-", parking: "-", area: "450 m²",
+        images: [
+          "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80"
+        ],
+        desc: "Terreno totalmente plano em loteamento fechado cercado por área verde preservada. Topografia perfeita pronta para construir a casa da sua vida.",
+        features: ["✓ Topografia plana", "✓ Condomínio com lago e trilhas", "✓ Portaria e vigilância 24h", "✓ Pronto para construir"]
+      },
+      6: {
+        id: 6,
+        title: "Sala Comercial Corporativa",
+        category: "comercial",
+        type: "Comercial",
+        neighborhood: "Faria Lima · São Paulo",
+        price: "R$ 980.000",
+        dorms: "-", baths: "1", parking: "2", area: "62 m²",
+        images: [
+          "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+        ],
+        desc: "Conjunto comercial corporativo no coração financeiro da Faria Lima. Piso elevado, ar condicionado central e 2 vagas com manobrista em edifício AAA.",
+        features: ["✓ Endereço de prestígio na Faria Lima", "✓ Edifício Corporativo AAA", "✓ Auditório e salas de reunião", "✓ 2 Vagas de garagem"]
+      }
+    };
+
+    // FAVORITOS
+    let favoritedIds = new Set();
+    try {
+      const savedFavs = localStorage.getItem('favorited_props');
+      if (savedFavs) favoritedIds = new Set(JSON.parse(savedFavs));
+    } catch (e) {}
+
+    function updateFavBadges() {
+      const badge = document.getElementById('fav-badge');
+      if (badge) {
+        badge.innerText = favoritedIds.size;
+        badge.classList.add('scale-125');
+        setTimeout(() => badge.classList.remove('scale-125'), 200);
+      }
+      document.querySelectorAll('.fav-btn').forEach(btn => {
+        const card = btn.closest('[data-id]');
+        if (card) {
+          const id = parseInt(card.getAttribute('data-id'));
+          const svg = btn.querySelector('svg');
+          if (favoritedIds.has(id)) {
+            svg.setAttribute('fill', '#F5B50A');
+            svg.setAttribute('stroke', '#F5B50A');
+          } else {
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+          }
+        }
+      });
+    }
+
+    function toggleFavorite(e, btn, id) {
+      if (e) e.stopPropagation();
+      if (favoritedIds.has(id)) {
+        favoritedIds.delete(id);
+      } else {
+        favoritedIds.add(id);
+      }
+      try {
+        localStorage.setItem('favorited_props', JSON.stringify(Array.from(favoritedIds)));
+      } catch (err) {}
+      updateFavBadges();
+    }
+
+    function openFavoritesModal() {
+      const modal = document.getElementById('fav-modal');
+      const list = document.getElementById('fav-modal-list');
+      if (!modal || !list) return;
+
+      list.innerHTML = '';
+      if (favoritedIds.size === 0) {
+        list.innerHTML = '<p class="text-sm text-center py-6" style="color: var(--text-muted);">Você ainda não tem imóveis favoritados.</p>';
+      } else {
+        favoritedIds.forEach(id => {
+          const data = PROPERTIES_DATA[id];
+          if (data) {
+            const item = document.createElement('div');
+            item.className = 'flex items-center justify-between p-3 rounded-xl border';
+            item.style.backgroundColor = 'var(--surface-2)';
+            item.style.borderColor = 'var(--border)';
+            item.innerHTML = `
+              <div class="flex items-center gap-3">
+                <img src="${data.images[0]}" class="w-12 h-12 rounded-lg object-cover" />
+                <div>
+                  <h5 class="text-xs font-bold" style="color: var(--heading);">${data.title}</h5>
+                  <span class="text-[11px] font-bold" style="color: var(--accent);">${data.price}</span>
+                </div>
+              </div>
+              <button onclick="openPropertyModal(${data.id}); closeFavoritesModal();" class="px-3 py-1 text-white rounded-lg text-xs font-semibold" style="background-color: var(--primary);">Ver</button>
+            `;
+            list.appendChild(item);
+          }
+        });
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeFavoritesModal() {
+      const modal = document.getElementById('fav-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // 1. TEMA CLARO / ESCURO
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (themeBtn) themeBtn.setAttribute('aria-pressed', theme === 'dark');
+      try {
+        localStorage.setItem('theme', theme);
+      } catch (e) {}
+      if (themeIcon) {
+        if (theme === 'dark') {
+          themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
+        } else {
+          themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+        }
+      }
+    }
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+    }
+
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    // 2. MINI GALERIA DE CARDS
+    function slideGallery(track, index) {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      const dots = track.parentElement.querySelectorAll('.gallery-dot');
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.remove('bg-white/50');
+          dot.classList.add('bg-white');
+        } else {
+          dot.classList.remove('bg-white');
+          dot.classList.add('bg-white/50');
+        }
+      });
+      track.setAttribute('data-slide', index);
+    }
+
+    function prevSlide(e, btn) {
+      e.stopPropagation();
+      const track = btn.parentElement.querySelector('.gallery-track');
+      let current = parseInt(track.getAttribute('data-slide') || '0');
+      current = current > 0 ? current - 1 : 2;
+      slideGallery(track, current);
+    }
+
+    function nextSlide(e, btn) {
+      e.stopPropagation();
+      const track = btn.parentElement.querySelector('.gallery-track');
+      let current = parseInt(track.getAttribute('data-slide') || '0');
+      current = current < 2 ? current + 1 : 0;
+      slideGallery(track, current);
+    }
+
+    // 3. EFEITO 3D TILT NOS CARDS
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!isTouch && !prefersReducedMotion) {
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        const glare = card.querySelector('.card-glare');
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = ((y - centerY) / centerY) * -5;
+          const rotateY = ((x - centerX) / centerX) * 5;
+
+          requestAnimationFrame(() => {
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            if (glare) {
+              glare.style.opacity = '1';
+              glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2) 0%, transparent 70%)`;
+            }
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          requestAnimationFrame(() => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            if (glare) glare.style.opacity = '0';
+          });
+        });
+      });
+    }
+
+    // 4. MODAL DE DETALHES DO IMÓVEL
+    function openPropertyModal(id) {
+      const data = PROPERTIES_DATA[id];
+      if (!data) return;
+
+      const modal = document.getElementById('property-modal');
+      const mainImg = document.getElementById('modal-main-img');
+      const thumbsContainer = document.getElementById('modal-thumbs');
+
+      document.getElementById('modal-title').innerText = data.title;
+      document.getElementById('modal-badge').innerText = data.type;
+      document.getElementById('modal-location').innerText = data.neighborhood;
+      document.getElementById('modal-price').innerText = data.price;
+      document.getElementById('modal-description').innerText = data.desc;
+
+      mainImg.src = data.images[0];
+
+      thumbsContainer.innerHTML = '';
+      data.images.forEach((imgUrl, i) => {
+        const thumb = document.createElement('img');
+        thumb.src = imgUrl;
+        thumb.className = `w-16 h-12 rounded-lg object-cover cursor-pointer border-2 transition-all ${i === 0 ? 'border-amber-400 scale-105' : 'border-transparent opacity-70 hover:opacity-100'}`;
+        thumb.onclick = () => {
+          mainImg.src = imgUrl;
+          thumbsContainer.querySelectorAll('img').forEach((t, idx) => {
+            t.className = `w-16 h-12 rounded-lg object-cover cursor-pointer border-2 transition-all ${idx === i ? 'border-amber-400 scale-105' : 'border-transparent opacity-70 hover:opacity-100'}`;
+          });
+        };
+        thumbsContainer.appendChild(thumb);
+      });
+
+      document.getElementById('modal-specs').innerHTML = `
+        <div><span class="block text-[10px]" style="color: var(--text-muted);">Dormitórios</span><strong class="text-sm">${data.dorms}</strong></div>
+        <div><span class="block text-[10px]" style="color: var(--text-muted);">Banheiros</span><strong class="text-sm">${data.baths}</strong></div>
+        <div><span class="block text-[10px]" style="color: var(--text-muted);">Vagas</span><strong class="text-sm">${data.parking}</strong></div>
+        <div><span class="block text-[10px]" style="color: var(--text-muted);">Área</span><strong class="text-sm">${data.area}</strong></div>
+      `;
+
+      const featList = document.getElementById('modal-features');
+      featList.innerHTML = '';
+      data.features.forEach(f => {
+        const li = document.createElement('li');
+        li.innerText = f;
+        featList.appendChild(li);
+      });
+
+      const waBtn = document.getElementById('modal-wa-btn');
+      waBtn.href = `https://wa.me/5511900000000?text=Olá,%20Adriana!%20Gostaria%20de%20saber%20mais%20sobre%20o%20imóvel:%20${encodeURIComponent(data.title)}%20(${data.price}).`;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePropertyModal() {
+      const modal = document.getElementById('property-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closePropertyModal();
+        closeFavoritesModal();
+      }
+    });
+
+    document.getElementById('property-modal')?.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('property-modal')) closePropertyModal();
+    });
+
+    // 5. FILTRO DE IMÓVEIS
+    function filterProps(category, btnElement) {
+      const headingColor = getComputedStyle(document.documentElement).getPropertyValue('--heading').trim() || '#0B2A5B';
+      const bgAltColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-alt').trim() || '#F4F7FB';
+      const textMutedColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#5B6475';
+
+      const filters = document.querySelectorAll('.prop-filter');
+      filters.forEach(f => {
+        f.classList.remove('active', 'text-white');
+        f.style.backgroundColor = bgAltColor;
+        f.style.color = textMutedColor;
+      });
+
+      if (btnElement) {
+        btnElement.classList.add('active', 'text-white');
+        btnElement.style.backgroundColor = headingColor;
+        btnElement.style.color = '#FFFFFF';
+      }
+
+      const grid = document.getElementById('properties-grid');
+      const skeleton = document.getElementById('skeleton-container');
+
+      if (grid && skeleton) {
+        grid.classList.add('hidden');
+        skeleton.classList.remove('hidden');
+
+        setTimeout(() => {
+          skeleton.classList.add('hidden');
+          grid.classList.remove('hidden');
+
+          const cards = document.querySelectorAll('.prop-card');
+          cards.forEach(card => {
+            const cat = card.getAttribute('data-category');
+            if (category === 'todos' || cat === category) {
+              card.style.display = 'block';
+              card.classList.add('visible');
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }, 500);
+      }
+    }
+
+    // 6. ROLAGEM & PARALLAX
+    const mainHeader = document.getElementById('main-header');
+    const headerContainer = document.getElementById('header-container');
+    const progressBar = document.getElementById('scroll-progress');
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+
+      if (progressBar) progressBar.style.width = scrolled + '%';
+
+      if (winScroll > 40) {
+        headerContainer?.classList.remove('h-20');
+        headerContainer?.classList.add('h-16');
+      } else {
+        headerContainer?.classList.remove('h-16');
+        headerContainer?.classList.add('h-20');
+      }
+
+      if (!isTouch && !prefersReducedMotion) {
+        const adrianaImg = document.getElementById('hero-adriana-img');
+        if (adrianaImg && winScroll < 600) {
+          requestAnimationFrame(() => {
+            adrianaImg.style.transform = `translateY(${winScroll * 0.08}px)`;
+          });
+        }
+      }
+
+      updateTimelineProgress();
+    });
+
+    // 7. COUNT-UP ANIMADO
+    let animatedCount = false;
+    function animateCounters() {
+      if (animatedCount) return;
+      const countEls = document.querySelectorAll('.count-up');
+      countEls.forEach(el => {
+        const target = parseFloat(el.getAttribute('data-target'));
+        const isDecimal = target % 1 !== 0;
+        let start = 0;
+        const duration = 1500;
+        const stepTime = 20;
+        const steps = duration / stepTime;
+        const increment = target / steps;
+
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            el.innerText = isDecimal ? target.toFixed(1) : target;
+            clearInterval(timer);
+          } else {
+            el.innerText = isDecimal ? start.toFixed(1) : Math.floor(start);
+          }
+        }, stepTime);
+      });
+      animatedCount = true;
+    }
+
+    // 8. TIMELINE
+    function updateTimelineProgress() {
+      const section = document.getElementById('como-funciona');
+      const bar = document.getElementById('timeline-bar');
+      if (!section || !bar) return;
+
+      const rect = section.getBoundingClientRect();
+      const winHeight = window.innerHeight;
+
+      if (rect.top < winHeight && rect.bottom > 0) {
+        const total = rect.height;
+        const current = winHeight - rect.top;
+        const percent = Math.min(Math.max((current / total) * 100, 0), 100);
+        bar.style.width = percent + '%';
+      }
+    }
+
+    // 9. CURSOR SPOTLIGHT
+    if (!isTouch && !prefersReducedMotion) {
+      document.querySelectorAll('.spotlight-container').forEach(container => {
+        const glow = container.querySelector('.spotlight-glow');
+        if (!glow) return;
+
+        container.addEventListener('mousemove', (e) => {
+          const rect = container.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          requestAnimationFrame(() => {
+            glow.style.opacity = '1';
+            glow.style.left = x + 'px';
+            glow.style.top = y + 'px';
+          });
+        });
+
+        container.addEventListener('mouseleave', () => {
+          glow.style.opacity = '0';
+        });
+      });
+
+      document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          requestAnimationFrame(() => {
+            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+          });
+        });
+        btn.addEventListener('mouseleave', () => {
+          requestAnimationFrame(() => {
+            btn.style.transform = 'translate(0px, 0px)';
+          });
+        });
+      });
+    }
+
+    // 10. REVELAÇÃO AO ROLAR
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if (entry.target.querySelector('.count-up')) {
+              animateCounters();
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+      animateCounters();
+    }
+
+    // SIMULADOR DE FINANCIAMENTO
+    function updateSim() {
+      const propVal = parseFloat(document.getElementById('sim-property').value) || 1250000;
+      const downVal = parseFloat(document.getElementById('sim-down').value) || 250000;
+      const years = parseInt(document.getElementById('sim-years').value) || 30;
+      const annualRate = parseFloat(document.getElementById('sim-rate').value) || 10.5;
+
+      const minDown = propVal * 0.20;
+      let actualDown = downVal;
+      if (actualDown < minDown) {
+        actualDown = minDown;
+        document.getElementById('sim-down').value = minDown;
+      }
+
+      const financed = propVal - actualDown;
+      const months = years * 12;
+      const monthlyRate = (annualRate / 100) / 12;
+
+      let pmt = 0;
+      if (monthlyRate > 0 && months > 0 && financed > 0) {
+        const factor = Math.pow(1 + monthlyRate, months);
+        pmt = financed * (monthlyRate * factor) / (factor - 1);
+      }
+
+      const reqIncome = pmt * 3.33;
+
+      document.getElementById('display-sim-property').innerText = 'R$ ' + propVal.toLocaleString('pt-BR');
+      document.getElementById('display-sim-down').innerText = 'R$ ' + actualDown.toLocaleString('pt-BR') + ' (' + Math.round((actualDown/propVal)*100) + '%)';
+      
+      document.getElementById('res-financed').innerText = 'R$ ' + financed.toLocaleString('pt-BR');
+      document.getElementById('res-monthly').innerText = 'R$ ' + Math.round(pmt).toLocaleString('pt-BR');
+      document.getElementById('res-income').innerText = 'R$ ' + Math.round(reqIncome).toLocaleString('pt-BR');
+
+      const waBtn = document.getElementById('sim-whatsapp-btn');
+      if (waBtn) {
+        const msg = encodeURIComponent(`Olá, Adriana! Fiz uma simulação no site para um imóvel de R$ ${propVal.toLocaleString('pt-BR')} (Entrada: R$ ${actualDown.toLocaleString('pt-BR')}, Parcela aprox.: R$ ${Math.round(pmt).toLocaleString('pt-BR')}). Gostaria de atendimento!`);
+        waBtn.href = `https://wa.me/5511900000000?text=${msg}`;
+      }
+    }
+
+    // ACCORDION FAQ
+    function toggleFaq(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        if (icon) icon.classList.transform = 'rotate(180deg)';
+      } else {
+        content.classList.add('hidden');
+        if (icon) icon.classList.transform = 'rotate(0deg)';
+      }
+    }
+
+    function handleEvaluationSubmit(e) {
+      e.preventDefault();
+      const successMsg = document.getElementById('eval-success');
+      if (successMsg) {
+        successMsg.classList.remove('hidden');
+        setTimeout(() => { e.target.reset(); successMsg.classList.add('hidden'); }, 5000);
+      }
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const successMsg = document.getElementById('contact-success');
+      if (successMsg) {
+        successMsg.classList.remove('hidden');
+        setTimeout(() => { e.target.reset(); successMsg.classList.add('hidden'); }, 5000);
+      }
+    }
+
+    // MENU MOBILE TOGGLE
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    // BUSCA HERO
+    const searchTabs = document.querySelectorAll('.search-tab');
+    searchTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#1F4FA3';
+        const inputBgColor = getComputedStyle(document.documentElement).getPropertyValue('--input-bg').trim() || '#F4F7FB';
+        const textMutedColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#5B6475';
+
+        searchTabs.forEach(t => {
+          t.classList.remove('active');
+          t.style.backgroundColor = inputBgColor;
+          t.style.color = textMutedColor;
+        });
+        tab.classList.add('active');
+        tab.style.backgroundColor = primaryColor;
+        tab.style.color = '#FFFFFF';
+      });
+    });
+
+    function handleHeroSearch(e) {
+      e.preventDefault();
+      const type = document.getElementById('search-type').value;
+      filterProps(type, document.querySelector(`.prop-filter[onclick*="${type}"]`) || document.querySelector('.prop-filter'));
+      document.getElementById('imoveis')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // PARALLAX SUAVE NA FACHADA DO HERO AO ROLAR (Respeita prefers-reduced-motion)
+    window.addEventListener('scroll', () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const scrollPos = window.scrollY;
+      const heroBg = document.getElementById('hero-facade-bg');
+      if (heroBg && scrollPos <= 1200) {
+        requestAnimationFrame(() => {
+          heroBg.style.transform = `translate3d(0, ${scrollPos * 0.22}px, 0)`;
+        });
+      }
+    }, { passive: true });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateSim();
+      updateFavBadges();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Adriana Monteiro | Corretora de Imóveis",
+  "description": "Landing page de consultoria imobiliária de Adriana Monteiro (CRECI-SP 123456-F) em São Paulo e Grande São Paulo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
