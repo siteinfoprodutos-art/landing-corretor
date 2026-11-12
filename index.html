@@ -412,118 +412,123 @@
     </div>
   </header>
 
-  <main class="pt-20">
+  <main class="pt-0">
 
-    <!-- ==================== 2. HERO SECTION COM REVELAÇÃO POR LINHA ==================== -->
-    <section id="inicio" class="hero-container relative text-white pt-8 pb-16 lg:pb-0 overflow-hidden">
+    <!-- ==================== 2. HERO VÍDEO SECTION ==================== -->
+    <section id="inicio" class="relative w-full overflow-hidden rounded-b-[36px] sm:rounded-b-[48px] shadow-2xl bg-[#0F2A5C] min-h-[88vh] lg:min-h-[92vh] flex flex-col justify-end">
       
-      <!-- Fachada Background & Camadas Overlays -->
-      <div id="hero-facade-bg" class="hero-facade-bg"></div>
-      <div class="hero-overlay-gradient"></div>
-      <div class="hero-overlay-multiply"></div>
-      <div class="hero-radial-glow"></div>
-      <div class="hero-base-fade"></div>
+      <!-- Vídeo de Fundo com Poster Fallback -->
+      <div id="hero-video-container" class="absolute inset-0 w-full h-full overflow-hidden bg-[#0F2A5C]">
+        <video id="hero-video" 
+               src="hero.mp4" 
+               poster="hero-poster.jpg" 
+               autoplay 
+               muted 
+               playsinline 
+               preload="auto"
+               class="w-full h-full object-cover"
+               onerror="handleHeroVideoError(this)">
+          <source src="hero.mp4" type="video/mp4" />
+          <source src="public/hero.mp4" type="video/mp4" />
+          <source src="/assets/aistudio/hero_16940cf2.mp4" type="video/mp4" />
+        </video>
 
-      <!-- Luminárias da Fachada com Pulso Lento -->
-      <div class="fixture-glow hidden sm:block" style="top: 48%; left: 45%;"></div>
-      <div class="fixture-glow hidden sm:block" style="top: 50%; left: 59%;"></div>
-      <div class="fixture-glow hidden sm:block" style="top: 22%; left: 65%;"></div>
-      <div class="fixture-glow hidden sm:block" style="top: 76%; left: 32%;"></div>
-
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Overlay Gradiente Azul Marinho (#0F2A5C): Transparente em cima, ~80% embaixo -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0F2A5C]/35 via-[#0F2A5C]/60 to-[#0F2A5C]/90 pointer-events-none z-10"></div>
+        <div class="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-[#0F2A5C]/40 pointer-events-none z-10"></div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-          
-          <!-- Lado Esquerdo: Headline Revelação por Linha e CTAs -->
-          <div class="lg:col-span-7 pt-6 lg:py-16 text-left">
-            
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 font-semibold text-xs tracking-wider uppercase mb-6 fade-up" style="color: var(--accent); backdrop-filter: blur(8px);">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span>Adriana Monteiro · CRECI-SP 123456-F</span>
-            </div>
+        <!-- Fallback Imagem Adriana (Exibido apenas se o vídeo e poster falharem) -->
+        <div id="hero-fallback-bg" class="hidden absolute inset-0 z-0 bg-[#0F2A5C] flex items-end justify-end pr-8 pb-0">
+          <img src="adriana.png" alt="Adriana Monteiro" class="max-h-[80%] w-auto object-contain opacity-90 drop-shadow-2xl" />
+        </div>
+      </div>
 
-            <!-- Title com Revelação por Linha e Shimmer -->
-            <h1 class="font-heading font-bold text-3xl sm:text-5xl lg:text-5xl xl:text-6xl text-white leading-tight tracking-tight mb-6 drop-shadow-md">
-              <span class="line-mask"><span class="line-reveal line-reveal-1">Abrindo portas para a sua</span></span>
-              <span class="line-mask"><span class="line-reveal line-reveal-2 gold-shimmer-text font-extrabold">nova conquista</span></span>
+      <!-- Botão Pequeno Ligar/Desligar Som (Canto Superior Direito) -->
+      <button id="hero-audio-toggle" type="button" onclick="toggleHeroAudio()" 
+              class="absolute top-24 right-4 sm:right-8 z-30 p-3 rounded-full bg-black/40 backdrop-blur-md text-amber-400 border border-amber-400/40 hover:bg-black/60 transition-all shadow-xl flex items-center justify-center cursor-pointer group"
+              aria-label="Ativar ou desativar áudio do vídeo">
+        <svg id="hero-audio-icon-muted" class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+        <svg id="hero-audio-icon-unmuted" class="w-5 h-5 hidden transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+      </button>
+
+      <!-- Conteúdo Sobre o Vídeo (Alinhado Embaixo e à Esquerda) -->
+      <div class="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16 pt-28 text-left">
+        <div class="max-w-2xl">
+          
+          <!-- Selo Dourado Fixo -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/50 text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-md shadow-md">
+            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>CRECI-SP 123456-F</span>
+          </div>
+
+          <!-- Títulos Sincronizados com o Vídeo (Troca Suave com Fade e Subida) -->
+          <div class="min-h-[110px] sm:min-h-[140px] flex items-end mb-6 relative">
+            
+            <!-- Title 1 (0 a 3s) -->
+            <h1 id="hero-title-1" class="hero-sync-title font-heading font-extrabold text-3xl sm:text-5xl lg:text-5xl text-white leading-tight tracking-tight drop-shadow-lg transition-all duration-700 ease-out transform opacity-100 translate-y-0">
+              Todo grande sonho começa em um terreno
             </h1>
             
-            <!-- Subtítulo -->
-            <p class="text-base sm:text-lg text-white/90 font-normal leading-relaxed mb-8 max-w-2xl fade-up drop-shadow-sm">
-              Compre, venda ou invista em imóveis com segurança, transparência e atendimento personalizado do início ao fim em <strong class="text-white">São Paulo e Grande São Paulo</strong>.
-            </p>
+            <!-- Title 2 (3 a 6s) -->
+            <h1 id="hero-title-2" class="hero-sync-title absolute inset-x-0 bottom-0 font-heading font-extrabold text-3xl sm:text-5xl lg:text-5xl text-white leading-tight tracking-tight drop-shadow-lg transition-all duration-700 ease-out transform opacity-0 translate-y-6 pointer-events-none">
+              Eu cuido de cada etapa, da escolha à negociação
+            </h1>
 
-            <!-- Botões Principais -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6 fade-up">
-              <a href="#imoveis" 
-                 class="btn-pill btn-gold-shimmer px-8 py-4 font-heading font-bold text-base shadow-xl flex items-center justify-center gap-2" style="background-color: var(--accent); color: var(--accent-contrast);">
-                <span>Ver imóveis</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </a>
-              <a href="https://wa.me/5511900000000?text=Ol%C3%A1%2C%20Adriana!%20Vim%20pelo%20seu%20site%20e%20quero%20ajuda%20para%20encontrar%20um%20im%C3%B3vel.%20%5Borigem%3A%20hero%5D" 
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn-pill px-8 py-4 border-2 border-white/80 hover:bg-white hover:text-slate-900 text-white font-heading font-semibold text-base flex items-center justify-center gap-2 transition-all shadow-lg backdrop-blur-sm">
-                <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/></svg>
-                <span>Falar no WhatsApp</span>
-              </a>
-            </div>
-
-            <!-- Indicador Rápido -->
-            <div class="inline-flex items-center gap-2 text-xs text-white/95 font-medium px-4 py-2 rounded-full bg-black/20 backdrop-blur-md border border-white/10 fade-up mb-4 lg:mb-0">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Fale com a Adriana no WhatsApp — Resposta rápida</span>
-            </div>
+            <!-- Title 3 (6 a 8s) -->
+            <h1 id="hero-title-3" class="hero-sync-title absolute inset-x-0 bottom-0 font-heading font-extrabold text-3xl sm:text-5xl lg:text-5xl text-white leading-tight tracking-tight drop-shadow-lg transition-all duration-700 ease-out transform opacity-0 translate-y-6 pointer-events-none">
+              Do terreno à chave na mão
+            </h1>
 
           </div>
 
-          <!-- Lado Direito: Foto da Corretora com Máscara e Drop-Shadow -->
-          <div class="lg:col-span-5 flex justify-center lg:justify-end fade-up relative z-10 mt-6 lg:mt-0">
-            <div class="relative w-full max-w-md lg:max-w-none flex justify-center">
-              <img id="hero-adriana-img"
-                   src="adriana.png" 
-                   alt="Adriana Monteiro, corretora de imóveis em São Paulo" 
-                   onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-48 h-48 lg:w-64 lg:h-64 rounded-full font-bold text-6xl flex items-center justify-center font-heading shadow-md my-8\' style=\'background-color: var(--accent); color: var(--accent-contrast);\'>A</div>';"
-                   class="adriana-hero-mask max-h-[460px] sm:max-h-[520px] lg:max-h-[570px] w-auto object-contain object-bottom transition-transform duration-300" />
-            </div>
+          <!-- Botões Fixos Abaixo do Título -->
+          <div class="flex flex-wrap items-center gap-4">
+            
+            <!-- Botão Verde WhatsApp -->
+            <a href="https://wa.me/5511900000000?text=Ol%C3%A1%2C%20Adriana!%20Vi%20sua%20p%C3%A1gina%20e%20gostaria%20de%20atendimento." 
+               target="_blank" rel="noopener noreferrer" 
+               class="btn-pill px-7 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-heading font-bold text-sm shadow-xl flex items-center gap-2.5 transition-all transform hover:-translate-y-0.5">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.999 1.602-1.041 3.8 3.785-.993 1.63 1.005z"/>
+              </svg>
+              <span>Falar no WhatsApp</span>
+            </a>
+
+            <!-- Botão Dourado Ver Imóveis -->
+            <a href="#imoveis" 
+               class="btn-pill btn-gold-shimmer px-7 py-3.5 text-slate-950 font-heading font-bold text-sm shadow-xl flex items-center gap-2 transition-all transform hover:-translate-y-0.5" 
+               style="background-color: var(--accent); color: var(--accent-contrast);">
+              <span>Ver imóveis</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </a>
+
           </div>
 
         </div>
-
-        <!-- Barra de Busca Flutuante abaixo do Hero -->
-        <div class="rounded-3xl p-4 sm:p-6 max-w-5xl mx-auto text-left -mb-16 relative z-20 fade-up" style="background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg); color: var(--text);">
-          <div class="flex items-center gap-2 pb-3 mb-4 overflow-x-auto no-scrollbar" style="border-bottom: 1px solid var(--border);">
-            <button type="button" class="search-tab active px-5 py-2 rounded-xl text-sm font-semibold font-heading text-white transition-all" style="background-color: var(--primary);" data-goal="comprar">Comprar</button>
-            <button type="button" class="search-tab px-5 py-2 rounded-xl text-sm font-semibold font-heading transition-all" style="background-color: var(--input-bg); color: var(--text-muted);" data-goal="alugar">Alugar</button>
-            <button type="button" class="search-tab px-5 py-2 rounded-xl text-sm font-semibold font-heading transition-all" style="background-color: var(--input-bg); color: var(--text-muted);" data-goal="vender">Vender</button>
-            <button type="button" class="search-tab px-5 py-2 rounded-xl text-sm font-semibold font-heading transition-all" style="background-color: var(--input-bg); color: var(--text-muted);" data-goal="investir">Investir</button>
-          </div>
-
-          <form id="hero-search-form" onsubmit="handleHeroSearch(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label for="search-type" class="block text-xs font-semibold uppercase tracking-wider mb-1" style="color: var(--text-muted);">Tipo de Imóvel</label>
-              <select id="search-type" class="w-full px-4 py-3 rounded-xl font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);">
-                <option value="todos">Todos os tipos</option>
-                <option value="apartamento">Apartamento / Studio</option>
-                <option value="casa">Casa / Condomínio</option>
-                <option value="terreno">Terreno</option>
-                <option value="comercial">Comercial / Sala</option>
-              </select>
-            </div>
-            <div>
-              <label for="search-location" class="block text-xs font-semibold uppercase tracking-wider mb-1" style="color: var(--text-muted);">Bairro ou Região</label>
-              <input type="text" id="search-location" placeholder="Ex: Moema, Pinheiros, Alphaville..." 
-                     class="w-full px-4 py-3 rounded-xl font-medium focus:outline-none" style="background-color: var(--input-bg); border: 1px solid var(--input-border); color: var(--input-text);" />
-            </div>
-            <div class="flex items-end">
-              <button type="submit" class="btn-pill btn-gold-shimmer w-full py-3.5 text-white font-heading font-semibold text-sm shadow-md flex items-center justify-center gap-2" style="background-color: var(--primary);">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                <span>Encontrar meu imóvel</span>
-              </button>
-            </div>
-          </form>
-        </div>
-
       </div>
+
+      <!-- Indicador Animado "Role para baixo" -->
+      <a href="#imoveis" class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity focus:outline-none" aria-label="Rolar para a seção de imóveis">
+        <span class="text-[10px] font-bold tracking-widest uppercase text-white/90 drop-shadow">Role para baixo</span>
+        <div class="w-5 h-8 rounded-full border-2 border-white/50 flex justify-center p-1 bg-black/20 backdrop-blur-sm shadow-md">
+          <div class="w-1.5 h-2.5 bg-amber-400 rounded-full animate-bounce"></div>
+        </div>
+      </a>
+
+      <!-- Barra Fina Dourada de Progresso (Parte de Baixo do Vídeo) -->
+      <div class="absolute bottom-0 left-0 w-full h-1 bg-black/40 z-30">
+        <div id="hero-video-progress" class="h-full bg-amber-400 transition-all duration-150 ease-linear shadow-[0_0_8px_rgba(245,181,10,0.8)]" style="width: 0%;"></div>
+      </div>
+
     </section>
 
     <!-- ==================== 3. NÚMEROS DE CONFIANÇA (Escritos no HTML + Animação JS) ==================== -->
@@ -2438,6 +2443,120 @@
       }
     });
 
+    /* ==========================================
+       CONTROLE DO VÍDEO DO HERO & CONTROLE DE TEMPO DE TÍTULOS
+       ========================================== */
+    let heroVideoIsPausingAtEnd = false;
+
+    function initHeroVideoSync() {
+      const heroVideo = document.getElementById('hero-video');
+      const progressBar = document.getElementById('hero-video-progress');
+      const t1 = document.getElementById('hero-title-1');
+      const t2 = document.getElementById('hero-title-2');
+      const t3 = document.getElementById('hero-title-3');
+
+      if (!heroVideo) return;
+
+      // Iniciar reprodução automática silenciosa
+      heroVideo.play().catch(err => {
+        console.warn('Autoplay do vídeo foi bloqueado pelo navegador:', err);
+      });
+
+      heroVideo.addEventListener('timeupdate', () => {
+        if (!heroVideo.duration || heroVideoIsPausingAtEnd) return;
+
+        const currentTime = heroVideo.currentTime;
+        const duration = heroVideo.duration;
+
+        // Atualizar barra de progresso fina dourada na parte de baixo do vídeo
+        if (progressBar) {
+          const pct = Math.min(100, (currentTime / duration) * 100);
+          progressBar.style.width = pct + '%';
+        }
+
+        // Sincronização dos Títulos:
+        // 0 a 3s: "Todo grande sonho começa em um terreno"
+        // 3 a 6s: "Eu cuido de cada etapa, da escolha à negociação"
+        // 6 a 8s: "Do terreno à chave na mão"
+        if (currentTime < 3) {
+          activateSyncTitle(t1, [t2, t3]);
+        } else if (currentTime < 6) {
+          activateSyncTitle(t2, [t1, t3]);
+        } else {
+          activateSyncTitle(t3, [t1, t2]);
+        }
+
+        // Pausa de 1,5s no último quadro do vídeo (antes do loop reiniciar)
+        if (currentTime >= duration - 0.15) {
+          pauseAndLoopHeroVideo(heroVideo, progressBar, t1, [t2, t3]);
+        }
+      });
+
+      heroVideo.addEventListener('ended', () => {
+        pauseAndLoopHeroVideo(heroVideo, progressBar, t1, [t2, t3]);
+      });
+    }
+
+    function activateSyncTitle(activeEl, inactiveEls) {
+      if (!activeEl || activeEl.classList.contains('opacity-100')) return;
+
+      inactiveEls.forEach(el => {
+        if (el) {
+          el.classList.remove('opacity-100', 'translate-y-0');
+          el.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+        }
+      });
+
+      activeEl.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+      activeEl.classList.add('opacity-100', 'translate-y-0');
+    }
+
+    function pauseAndLoopHeroVideo(video, progressBar, t1, inactiveTitles) {
+      if (heroVideoIsPausingAtEnd) return;
+      heroVideoIsPausingAtEnd = true;
+      video.pause();
+
+      if (progressBar) progressBar.style.width = '100%';
+
+      setTimeout(() => {
+        video.currentTime = 0;
+        activateSyncTitle(t1, inactiveTitles);
+        video.play().then(() => {
+          heroVideoIsPausingAtEnd = false;
+        }).catch(() => {
+          heroVideoIsPausingAtEnd = false;
+        });
+      }, 1500); // Pausa de 1,5s no último quadro antes de reiniciar
+    }
+
+    function toggleHeroAudio() {
+      const heroVideo = document.getElementById('hero-video');
+      const mutedIcon = document.getElementById('hero-audio-icon-muted');
+      const unmutedIcon = document.getElementById('hero-audio-icon-unmuted');
+      if (!heroVideo) return;
+
+      heroVideo.muted = !heroVideo.muted;
+      if (heroVideo.muted) {
+        mutedIcon?.classList.remove('hidden');
+        unmutedIcon?.classList.add('hidden');
+      } else {
+        mutedIcon?.classList.add('hidden');
+        unmutedIcon?.classList.remove('hidden');
+      }
+    }
+
+    function handleHeroVideoError(videoEl) {
+      console.warn('Vídeo do hero falhou ao carregar. Exibindo imagem fallback.');
+      const fallbackBg = document.getElementById('hero-fallback-bg');
+      if (fallbackBg) {
+        fallbackBg.classList.remove('hidden');
+      } else if (videoEl && videoEl.parentElement) {
+        videoEl.parentElement.style.backgroundImage = 'url("hero-poster.jpg")';
+        videoEl.parentElement.style.backgroundSize = 'cover';
+        videoEl.parentElement.style.backgroundPosition = 'center';
+      }
+    }
+
     // Animação de Contagem Números
     function animateCounters() {
       document.querySelectorAll('.count-up').forEach(el => {
@@ -2459,6 +2578,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      initHeroVideoSync();
       renderPropertyCards();
       updateSim();
       updateFavBadges();
